@@ -15,6 +15,15 @@ design-pattern/
 │   ├── use-case-cache-manager.ts         # Caching system example
 │   ├── use-case-database-manager.ts      # Database connection example
 │   └── use-case-event-bus.ts            # Pub/Sub communication example
+├── 2 - Creational - Factory Method/
+│   ├── introduction.md                    # Pattern theory and concepts
+│   ├── use-case.md                       # Real-world applications
+│   ├── index.ts                          # Available use cases overview
+│   ├── use-case-database-connection-factory.ts # Multi-database support
+│   ├── use-case-document-parser-factory.ts     # Multi-format parsing
+│   ├── use-case-ui-component-factory.ts        # Multi-theme UI components
+│   ├── use-case-logger-factory.ts              # Multi-destination logging
+│   └── use-case-payment-processor-factory.ts   # Multi-provider payments
 ├── package.json          # Project dependencies
 ├── tsconfig.json         # TypeScript configuration
 └── README.md            # This file
@@ -52,6 +61,16 @@ npm run singleton:logger    # Application Logger
 npm run singleton:cache     # Cache Manager
 npm run singleton:database  # Database Manager
 npm run singleton:eventbus  # Event Bus
+
+# Show available Factory Method use cases
+npm run factory-method
+
+# Run specific Factory Method examples
+npm run factory-method:database  # Database Connection Factory
+npm run factory-method:parser    # Document Parser Factory
+npm run factory-method:ui        # UI Component Factory
+npm run factory-method:logger    # Logger Factory
+npm run factory-method:payment   # Payment Processor Factory
 ```
 
 ### Method 2: Direct ts-node execution
@@ -76,9 +95,9 @@ node "dist/1 - Creational - Singleton/use-case-configuration-manager.js"
 
 #### 1. Creational Patterns
 - **1 - Creational - Singleton** - Ensures single instance with global access
+- **2 - Creational - Factory Method** - Provides interface for creating objects with subclass flexibility
 
 #### 🔄 Coming Soon
-- **2 - Creational - Factory Method**
 - **3 - Creational - Abstract Factory**
 - **4 - Creational - Builder**
 - **5 - Structural - Adapter**
@@ -168,12 +187,18 @@ npm run test                # Run Jest tests
 npm run lint                # Run ESLint
 npm run format              # Format code with Prettier
 npm run clean               # Clean build directory
-npm run singleton           # Show Singleton pattern use cases
-npm run singleton:config    # Run Configuration Manager example
-npm run singleton:logger    # Run Application Logger example
-npm run singleton:cache     # Run Cache Manager example
-npm run singleton:database  # Run Database Manager example
-npm run singleton:eventbus  # Run Event Bus example
+npm run singleton                # Show Singleton pattern use cases
+npm run singleton:config         # Run Configuration Manager example
+npm run singleton:logger         # Run Application Logger example
+npm run singleton:cache          # Run Cache Manager example
+npm run singleton:database       # Run Database Manager example
+npm run singleton:eventbus       # Run Event Bus example
+npm run factory-method           # Show Factory Method pattern use cases
+npm run factory-method:database  # Run Database Connection Factory example
+npm run factory-method:parser    # Run Document Parser Factory example
+npm run factory-method:ui        # Run UI Component Factory example
+npm run factory-method:logger    # Run Logger Factory example
+npm run factory-method:payment   # Run Payment Processor Factory example
 ```
 
 ## 🎨 Code Quality

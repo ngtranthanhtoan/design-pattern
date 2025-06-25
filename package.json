@@ -16,6 +16,12 @@
     "singleton:cache": "ts-node \"1 - Creational - Singleton/use-case-cache-manager.ts\"",
     "singleton:database": "ts-node \"1 - Creational - Singleton/use-case-database-manager.ts\"",
     "singleton:eventbus": "ts-node \"1 - Creational - Singleton/use-case-event-bus.ts\"",
+    "factory-method": "ts-node \"2 - Creational - Factory Method/index.ts\"",
+    "factory-method:database": "ts-node \"2 - Creational - Factory Method/use-case-database-connection-factory.ts\"",
+    "factory-method:parser": "ts-node \"2 - Creational - Factory Method/use-case-document-parser-factory.ts\"",
+    "factory-method:ui": "ts-node \"2 - Creational - Factory Method/use-case-ui-component-factory.ts\"",
+    "factory-method:logger": "ts-node \"2 - Creational - Factory Method/use-case-logger-factory.ts\"",
+    "factory-method:payment": "ts-node \"2 - Creational - Factory Method/use-case-payment-processor-factory.ts\"",
     "run-pattern": "ts-node",
     "clean": "rimraf dist"
   },
