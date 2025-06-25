@@ -33,6 +33,30 @@ design-pattern/
 │   ├── use-case-ecommerce-platform-factory.ts  # Regional commerce services
 │   ├── use-case-database-ecosystem-factory.ts  # Database type ecosystems
 │   └── use-case-game-engine-component-factory.ts # Game engine backends
+├── 4 - Creational - Builder/
+│   ├── introduction.md                    # Pattern theory and concepts
+│   ├── use-case.md                       # Real-world applications
+│   ├── index.ts                          # Available use cases overview
+│   └── [Multiple builder implementations] # Complex object construction
+├── 5 - Creational - Prototype/
+│   ├── introduction.md                    # Pattern theory and concepts
+│   ├── use-case.md                       # Real-world applications
+│   ├── index.ts                          # Available use cases overview
+│   └── [Multiple prototype implementations] # Object cloning patterns
+├── Function Patterns/
+│   ├── introduction.md                    # Functional programming theory
+│   ├── README.md                         # Quick reference guide
+│   ├── index.ts                          # Interactive pattern overview
+│   ├── F1 - Maybe-Option Pattern/
+│   ├── F2 - Strategy Pattern - Higher-Order Functions/
+│   ├── F3 - Factory Pattern - Factory Functions/
+│   ├── F4 - Decorator Pattern - Function Composition/
+│   ├── F5 - Observer Pattern - Pub-Sub with Closures/
+│   ├── F6 - Builder Pattern - Fluent Interfaces/
+│   ├── F7 - Command Pattern - Function Queues/
+│   ├── F8 - Monad Pattern/
+│   ├── F9 - Lens Pattern/
+│   └── F10 - Reader Pattern/
 ├── Reflection/
 │   └── factory-method-vs-abstract-factory.md # Practical decision guide
 ├── package.json          # Project dependencies
@@ -92,6 +116,45 @@ npm run abstract-factory:cloud     # Cloud Infrastructure Factory
 npm run abstract-factory:ecommerce # E-commerce Platform Factory
 npm run abstract-factory:database  # Database Ecosystem Factory
 npm run abstract-factory:game      # Game Engine Component Factory
+
+# Show available Builder use cases
+npm run builder
+
+# Run specific Builder examples
+npm run builder:config      # Configuration Builder
+npm run builder:query       # Query Builder
+npm run builder:document    # Document Builder
+npm run builder:testdata    # Test Data Builder
+npm run builder:http        # HTTP Request Builder
+
+# Show available Prototype use cases
+npm run prototype
+
+# Run specific Prototype examples
+npm run prototype:document      # Document Template Prototype
+npm run prototype:configuration # Configuration Prototype
+npm run prototype:game          # Game Object Prototype
+npm run prototype:ui            # UI Component Prototype
+npm run prototype:data          # Data Model Prototype
+
+# Show available Functional Patterns overview
+npm run functional
+
+# Run specific Functional Pattern examples (F1-F10)
+npm run f1:maybe                    # F1 - Maybe-Option Pattern
+npm run f2:strategy                 # F2 - Strategy Pattern (Higher-Order Functions)
+npm run f2:strategy:validation      # F2 - Data validation system example
+npm run f3:factory                  # F3 - Factory Pattern (Factory Functions)
+npm run f3:factory:clients          # F3 - HTTP client factory example
+npm run f4:decorator                # F4 - Decorator Pattern (Function Composition)
+npm run f4:decorator:middleware     # F4 - Middleware pipeline example
+npm run f4:decorator:simple         # F4 - Simple middleware example
+npm run f5:observer                 # F5 - Observer Pattern (Pub-Sub with Closures)
+npm run f6:builder                  # F6 - Builder Pattern (Fluent Interfaces)
+npm run f7:command                  # F7 - Command Pattern (Function Queues)
+npm run f8:monad                    # F8 - Monad Pattern
+npm run f9:lens                     # F9 - Lens Pattern
+npm run f10:reader                  # F10 - Reader Pattern
 ```
 
 ### Method 2: Direct ts-node execution
@@ -114,20 +177,39 @@ node "dist/1 - Creational - Singleton/use-case-configuration-manager.js"
 
 ### ✅ Implemented Patterns
 
-#### 1. Creational Patterns
+#### 1. Creational Patterns (Complete)
 - **1 - Creational - Singleton** - Ensures single instance with global access
 - **2 - Creational - Factory Method** - Provides interface for creating objects with subclass flexibility
 - **3 - Creational - Abstract Factory** - Creates families of related objects that work together
+- **4 - Creational - Builder** - Constructs complex objects step by step
+- **5 - Creational - Prototype** - Creates objects by cloning existing instances
+
+#### 2. Functional Programming Patterns (F1-F10)
+
+**🏗️ Foundation Patterns**
+- **F1 - Maybe-Option Pattern** - Type-safe null handling with functional composition
+- **F2 - Strategy Pattern - Higher-Order Functions** - Behavior selection using higher-order functions
+- **F3 - Factory Pattern - Factory Functions** - Object creation through pure functions
+
+**🔧 Composition Patterns**  
+- **F4 - Decorator Pattern - Function Composition** - Behavior enhancement through function composition
+- **F5 - Observer Pattern - Pub-Sub with Closures** - Event-driven programming using closures
+
+**🚀 Advanced Patterns**
+- **F6 - Builder Pattern - Fluent Interfaces** - Fluent object construction with method chaining
+- **F7 - Command Pattern - Function Queues** - Action encapsulation with functional queues
+- **F8 - Monad Pattern** - Advanced composition with monadic structures
+- **F9 - Lens Pattern** - Immutable data manipulation with focus
+- **F10 - Reader Pattern** - Dependency injection through function composition
 
 #### 🤔 Practical Guidance
 - **Reflection/** - Decision guides, tips, and lessons learned from real implementations
 
 #### 🔄 Coming Soon
-- **4 - Creational - Builder**
-- **5 - Structural - Adapter**
-- **6 - Structural - Decorator**
-- **7 - Behavioral - Observer**
-- **8 - Behavioral - Strategy**
+- **6 - Structural - Adapter**
+- **7 - Structural - Decorator** 
+- **8 - Behavioral - Observer**
+- **9 - Behavioral - Strategy**
 
 ## 🔍 Pattern Structure
 
@@ -237,6 +319,33 @@ npm run abstract-factory:cloud   # Run Cloud Infrastructure Factory example
 npm run abstract-factory:ecommerce # Run E-commerce Platform Factory example
 npm run abstract-factory:database  # Run Database Ecosystem Factory example
 npm run abstract-factory:game    # Run Game Engine Component Factory example
+npm run builder                  # Show Builder pattern use cases
+npm run builder:config           # Run Configuration Builder example
+npm run builder:query            # Run Query Builder example
+npm run builder:document         # Run Document Builder example
+npm run builder:testdata         # Run Test Data Builder example
+npm run builder:http             # Run HTTP Request Builder example
+npm run prototype                # Show Prototype pattern use cases
+npm run prototype:document       # Run Document Template Prototype example
+npm run prototype:configuration  # Run Configuration Prototype example
+npm run prototype:game           # Run Game Object Prototype example
+npm run prototype:ui             # Run UI Component Prototype example
+npm run prototype:data           # Run Data Model Prototype example
+npm run functional               # Show Functional Patterns overview
+npm run f1:maybe                 # F1 - Maybe-Option Pattern
+npm run f2:strategy              # F2 - Strategy Pattern (Higher-Order Functions)
+npm run f2:strategy:validation   # F2 - Data validation system example
+npm run f3:factory               # F3 - Factory Pattern (Factory Functions)
+npm run f3:factory:clients       # F3 - HTTP client factory example
+npm run f4:decorator             # F4 - Decorator Pattern (Function Composition)
+npm run f4:decorator:middleware  # F4 - Middleware pipeline example
+npm run f4:decorator:simple      # F4 - Simple middleware example
+npm run f5:observer              # F5 - Observer Pattern (Pub-Sub with Closures)
+npm run f6:builder               # F6 - Builder Pattern (Fluent Interfaces)
+npm run f7:command               # F7 - Command Pattern (Function Queues)
+npm run f8:monad                 # F8 - Monad Pattern
+npm run f9:lens                  # F9 - Lens Pattern
+npm run f10:reader               # F10 - Reader Pattern
 ```
 
 ## 🎨 Code Quality
