@@ -1,0 +1,119 @@
+# Design Patterns Learning Repository - Cursor Rules
+
+## Project Purpose
+This is a comprehensive learning repository for Design Patterns with hands-on examples and practical implementations. The goal is to master design patterns through structured learning and real-world practice.
+
+## Folder Structure Convention
+- **Naming**: `[OrderNumber] - [Category] - [Pattern Name]`
+- Example: `1 - Creational - Singleton`, `2 - Creational - Factory Method`
+
+## Required Files per Pattern
+1. **`introduction.md`** - Core concepts, theory, structure, benefits/drawbacks
+2. **`use-case.md`** - Real-world applications, practical scenarios, best practices  
+3. **`use-case-[specific-example].ts`** - Individual focused implementations
+4. **`index.ts`** - Pattern overview and navigation with npm scripts
+
+## Code Implementation Standards
+
+### TypeScript Requirements
+- Use proper TypeScript types and interfaces
+- Include comprehensive error handling and edge cases
+- Add `import { exit } from "process"` and `exit(0)` at end of runnable files
+- Use modern ES6+ features and current best practices
+
+### File Structure for Use Cases
+```typescript
+// 1. Interfaces and types first
+// 2. Abstract classes/creators  
+// 3. Concrete implementations
+// 4. Usage examples with comprehensive testing
+// 5. Demonstration functions
+// 6. Export statements
+```
+
+### Content Quality Standards
+- **Practical Examples**: Solve real-world problems, not toy examples
+- **Runnable Code**: All examples must execute with `npm run` commands
+- **Educational Value**: Include both usage and testing demonstrations  
+- **Professional Quality**: Production-ready code with proper error handling
+- **Comprehensive Comments**: Explain the "why" not just the "how"
+- **Real-world Complexity**: Don't oversimplify, show actual implementation challenges
+
+### Package.json Scripts Pattern
+```json
+{
+  "[pattern]": "ts-node \"[folder]/index.ts\"",
+  "[pattern]:[example1]": "ts-node \"[folder]/use-case-[example1].ts\"",
+  "[pattern]:[example2]": "ts-node \"[folder]/use-case-[example2].ts\""
+}
+```
+
+## Documentation Guidelines
+
+### introduction.md Format
+- What is the pattern?
+- Key principles and structure  
+- Benefits and drawbacks
+- When to use/avoid
+- UML diagrams or code structure examples
+- Related patterns
+
+### use-case.md Format  
+- 5+ real-world implemented examples
+- Each with Problem/Solution format
+- Include actual API examples from implementations
+- Industry use cases and modern alternatives
+- Best practices and anti-patterns
+
+### Code Comments Style
+- Explain design pattern concepts being demonstrated
+- Include reasoning for architectural decisions
+- Document edge cases and error handling
+- Reference pattern theory where applicable
+
+## Implementation Approach
+
+### When Creating New Patterns
+1. Research real-world applications first
+2. Start with simplest concrete example
+3. Build complexity progressively across use cases
+4. Each use case file should focus on ONE specific example
+5. Include comprehensive testing within each file
+6. Ensure all examples follow documented APIs exactly
+
+### Learning Path Design
+1. Basic example for pattern understanding
+2. Intermediate examples showing variations
+3. Advanced examples with real-world complexity
+4. Integration examples showing pattern combinations
+
+### Quality Checklist
+- ✅ All code runs immediately with npm scripts
+- ✅ TypeScript compilation without errors
+- ✅ Comprehensive error handling included
+- ✅ Real-world applicable examples
+- ✅ Clear separation of concerns
+- ✅ Modern best practices followed
+- ✅ Educational comments throughout
+- ✅ Testing/demonstration included
+
+## Current Repository Status
+- ✅ Singleton Pattern - Complete
+- ✅ Factory Method Pattern - Complete and recently reworked
+- 🔄 Abstract Factory Pattern - In progress
+
+## When Working on This Project
+- Always create practical, immediately runnable examples
+- Focus on real-world applicability over academic correctness
+- Include multiple approaches to solve the same problem
+- Ensure consistent API patterns across similar use cases
+- Maintain modular design for focused learning
+- Test everything thoroughly before considering complete
+
+## Related Technologies
+- TypeScript for type safety and modern JavaScript features
+- Node.js for runtime environment
+- npm scripts for easy example execution
+- Comprehensive documentation in Markdown
+
+This repository serves as both a learning resource and a reference for implementing design patterns in real TypeScript/JavaScript projects. 
