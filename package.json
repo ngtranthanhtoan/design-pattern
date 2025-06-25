@@ -34,6 +34,12 @@
     "builder:document": "ts-node \"4 - Creational - Builder/use-case-document-builder.ts\"",
     "builder:testdata": "ts-node \"4 - Creational - Builder/use-case-test-data-builder.ts\"",
     "builder:http": "ts-node \"4 - Creational - Builder/use-case-http-request-builder.ts\"",
+    "prototype": "ts-node \"5 - Creational - Prototype/index.ts\"",
+    "prototype:document": "ts-node \"5 - Creational - Prototype/use-case-document-template-prototype.ts\"",
+    "prototype:configuration": "ts-node \"5 - Creational - Prototype/use-case-configuration-prototype.ts\"",
+    "prototype:game": "ts-node \"5 - Creational - Prototype/use-case-game-object-prototype.ts\"",
+    "prototype:ui": "ts-node \"5 - Creational - Prototype/use-case-ui-component-prototype.ts\"",
+    "prototype:data": "ts-node \"5 - Creational - Prototype/use-case-data-model-prototype.ts\"",
     "run-pattern": "ts-node",
     "clean": "rimraf dist"
   },
