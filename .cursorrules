@@ -51,19 +51,42 @@ This is a comprehensive learning repository for Design Patterns with hands-on ex
 ## Documentation Guidelines
 
 ### introduction.md Format
-- What is the pattern?
-- Key principles and structure  
-- Benefits and drawbacks
-- When to use/avoid
-- UML diagrams or code structure examples
-- Related patterns
+- Use the following ordered sections to ensure consistency and readability:
+  1. **Pattern Name** – H1 heading (`# [Pattern] Pattern`)
+  2. **What is the Pattern?** – Brief definition & intent
+  3. **Key Participants** – Table or bullet list (Abstraction, Implementations, etc.)
+  4. **Key Characteristics** – Bullet list of distinguishing traits
+  5. **How it Works** – High-level explanation of collaboration flow
+  6. **Structure** – UML, or ASCII diagram
+  7. **Benefits** – ✅ bullets
+  8. **Drawbacks** – ❌ bullets
+  9. **When to Use / Avoid** – Clear guidance
+  10. **Real-World Examples** – Industry scenarios referencing repo demos
+  11. **Common Implementation Variations** – Parameterised, registry-based, etc. with code snippets
+  12. **Related Patterns** – Cross-links to other patterns in the repo
+  13. Optional Enhancements  
+    • Implementation Highlights  
+    • Sequence Diagram  
+    • Pitfalls & Anti-Patterns  
+    • Testing Tips  
+    • Performance Notes
+
+- Keep headings in this order to maintain a cohesive narrative across all pattern introductions.
 
 ### use-case.md Format  
-- 5+ real-world implemented examples
-- Each with Problem/Solution format
-- Include actual API examples from implementations
-- Industry use cases and modern alternatives
-- Best practices and anti-patterns
+- Provide **Overview** paragraph explaining why the pattern is practical.  
+- Then document at least **5 real-world Use Cases** using the *Problem ➜ Solution* style.  
+- Recommended structure:
+  1. `## Overview`
+  2. Reusable table listing all use-cases briefly (optional)
+  3. For each use-case:
+     * `## Use Case X: Title`
+       * `### Problem` – real-world pain point
+       * `### Solution` – how pattern solves it; reference demo file & key interface/implementation names
+       * Include **Target Interface** & **Adapter/Composite/Bridge** snippet where helpful.
+- End with **Best Practices / Anti-Patterns** list if additional guidance is valuable.
+- Reference runnable demos via `npm run` script names so readers can jump directly.
+- Keep headings consistent across all patterns to ease scanning.
 
 ### Code Comments Style
 - Explain design pattern concepts being demonstrated
@@ -144,51 +167,4 @@ Functional pattern folders live under `Function Patterns/` and demonstrate the F
 - ✅ Clear, production-relevant examples (no toy hello-world)
 - ✅ Thorough comments explaining FP concepts and trade-offs
 - ✅ TypeScript compiles without `any`
-- ✅ Scripts added to `package.json` following the pattern
-
-## Implementation Approach
-
-### When Creating New Patterns
-1. Research real-world applications first
-2. Start with simplest concrete example
-3. Build complexity progressively across use cases
-4. Each use case file should focus on ONE specific example
-5. Include comprehensive testing within each file
-6. Ensure all examples follow documented APIs exactly
-
-### Learning Path Design
-1. Basic example for pattern understanding
-2. Intermediate examples showing variations
-3. Advanced examples with real-world complexity
-4. Integration examples showing pattern combinations
-
-### Quality Checklist
-- ✅ All code runs immediately with npm scripts
-- ✅ TypeScript compilation without errors
-- ✅ Comprehensive error handling included
-- ✅ Real-world applicable examples
-- ✅ Clear separation of concerns
-- ✅ Modern best practices followed
-- ✅ Educational comments throughout
-- ✅ Testing/demonstration included
-
-## Current Repository Status
-- ✅ Singleton Pattern - Complete
-- ✅ Factory Method Pattern - Complete and recently reworked
-- 🔄 Abstract Factory Pattern - In progress
-
-## When Working on This Project
-- Always create practical, immediately runnable examples
-- Focus on real-world applicability over academic correctness
-- Include multiple approaches to solve the same problem
-- Ensure consistent API patterns across similar use cases
-- Maintain modular design for focused learning
-- Test everything thoroughly before considering complete
-
-## Related Technologies
-- TypeScript for type safety and modern JavaScript features
-- Node.js for runtime environment
-- npm scripts for easy example execution
-- Comprehensive documentation in Markdown
-
-This repository serves as both a learning resource and a reference for implementing design patterns in real TypeScript/JavaScript projects. 
+- ✅ Scripts added to `package.json`

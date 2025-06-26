@@ -2,6 +2,19 @@
 
 ## Overview
 
+Below is a quick-glance table of the concrete adapters implemented in this repository.
+
+| # | Title | npm Demo |
+|---|-------|----------|
+| 1 | Payment Gateway (Stripe, PayPal, Square) | `npm run adapter:payment` |
+| 2 | Database Driver Abstraction (MySQL, Mongo) | `npm run adapter:database` |
+| 3 | File Format Converters (JSON, XML, CSV) | `npm run adapter:file` |
+| 4 | Legacy SOAP User Service | `npm run adapter:soap` |
+| 5 | Winston Logger Wrapper | `npm run adapter:logger` |
+| 6 | React Component Adapter | _example only_ |
+
+---
+
 The Adapter pattern is essential for integrating incompatible systems, legacy code, and third-party libraries. Here are practical examples demonstrating how adapters solve real-world interface compatibility problems.
 
 ## Use Case 1: Payment Gateway Integration
