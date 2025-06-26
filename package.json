@@ -80,7 +80,13 @@
     "decorator:logger": "ts-node \"9 - Structural - Decorator/use-case-logger-decorator.ts\"",
     "decorator:encrypt": "ts-node \"9 - Structural - Decorator/use-case-encryption-stream-decorator.ts\"",
     "decorator:ui": "ts-node \"9 - Structural - Decorator/use-case-ui-component-decorator.ts\"",
-    "decorator:repo": "ts-node \"9 - Structural - Decorator/use-case-repository-validation-decorator.ts\""
+    "decorator:repo": "ts-node \"9 - Structural - Decorator/use-case-repository-validation-decorator.ts\"",
+    "facade": "ts-node \"10 - Structural - Facade/index.ts\"",
+    "facade:home": "ts-node \"10 - Structural - Facade/use-case-home-theater-facade.ts\"",
+    "facade:payment": "ts-node \"10 - Structural - Facade/use-case-payment-processing-facade.ts\"",
+    "facade:notify": "ts-node \"10 - Structural - Facade/use-case-notification-facade.ts\"",
+    "facade:cloud": "ts-node \"10 - Structural - Facade/use-case-cloud-deployment-facade.ts\"",
+    "facade:api": "ts-node \"10 - Structural - Facade/use-case-api-client-facade.ts\""
   },
   "keywords": [
     "design-patterns",
