@@ -86,7 +86,13 @@
     "facade:payment": "ts-node \"10 - Structural - Facade/use-case-payment-processing-facade.ts\"",
     "facade:notify": "ts-node \"10 - Structural - Facade/use-case-notification-facade.ts\"",
     "facade:cloud": "ts-node \"10 - Structural - Facade/use-case-cloud-deployment-facade.ts\"",
-    "facade:api": "ts-node \"10 - Structural - Facade/use-case-api-client-facade.ts\""
+    "facade:api": "ts-node \"10 - Structural - Facade/use-case-api-client-facade.ts\"",
+    "flyweight": "ts-node \"11 - Structural - Flyweight/index.ts\"",
+    "flyweight:forest": "ts-node \"11 - Structural - Flyweight/use-case-forest-flyweight.ts\"",
+    "flyweight:map": "ts-node \"11 - Structural - Flyweight/use-case-map-marker-flyweight.ts\"",
+    "flyweight:particles": "ts-node \"11 - Structural - Flyweight/use-case-particle-system-flyweight.ts\"",
+    "flyweight:glyphs": "ts-node \"11 - Structural - Flyweight/use-case-text-glyph-flyweight.ts\"",
+    "flyweight:styles": "ts-node \"11 - Structural - Flyweight/use-case-ui-style-flyweight.ts\""
   },
   "keywords": [
     "design-patterns",
