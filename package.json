@@ -113,7 +113,13 @@
     "command:restaurant": "ts-node \"14 - Behavioral - Command/use-case-restaurant.ts\"",
     "command:game-input": "ts-node \"14 - Behavioral - Command/use-case-game-input.ts\"",
     "command:database": "ts-node \"14 - Behavioral - Command/use-case-database.ts\"",
-    "command:react-form": "ts-node \"14 - Behavioral - Command/use-case-react-form.ts\""
+    "command:react-form": "ts-node \"14 - Behavioral - Command/use-case-react-form.ts\"",
+    "iterator": "ts-node \"15 - Behavioral - Iterator/index.ts\"",
+    "iterator:database": "ts-node \"15 - Behavioral - Iterator/use-case-database.ts\"",
+    "iterator:filesystem": "ts-node \"15 - Behavioral - Iterator/use-case-filesystem.ts\"",
+    "iterator:tree": "ts-node \"15 - Behavioral - Iterator/use-case-tree.ts\"",
+    "iterator:stream": "ts-node \"15 - Behavioral - Iterator/use-case-stream.ts\"",
+    "iterator:gui": "ts-node \"15 - Behavioral - Iterator/use-case-gui.ts\""
   },
   "keywords": [
     "design-patterns",
