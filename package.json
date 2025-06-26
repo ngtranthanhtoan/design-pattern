@@ -98,7 +98,15 @@
     "proxy:security": "ts-node \"12 - Structural - Proxy/use-case-security-proxy.ts\"",
     "proxy:remote": "ts-node \"12 - Structural - Proxy/use-case-remote-proxy.ts\"",
     "proxy:lazy": "ts-node \"12 - Structural - Proxy/use-case-lazy-image-proxy.ts\"",
-    "proxy:rate": "ts-node \"12 - Structural - Proxy/use-case-rate-limit-proxy.ts\""
+    "proxy:rate": "ts-node \"12 - Structural - Proxy/use-case-rate-limit-proxy.ts\"",
+    "cor": "ts-node \"13 - Behavioral - Chain of Responsibility/index.ts\"",
+    "cor:http": "ts-node \"13 - Behavioral - Chain of Responsibility/use-case-http-validation-chain.ts\"",
+    "chain": "ts-node \"13 - Behavioral - Chain of Responsibility/index.ts\"",
+    "chain:http": "ts-node \"13 - Behavioral - Chain of Responsibility/use-case-http-validation-chain.ts\"",
+    "chain:logging": "ts-node \"13 - Behavioral - Chain of Responsibility/use-case-logging-chain.ts\"",
+    "chain:purchase": "ts-node \"13 - Behavioral - Chain of Responsibility/use-case-purchase-approval-chain.ts\"",
+    "chain:support": "ts-node \"13 - Behavioral - Chain of Responsibility/use-case-support-escalation-chain.ts\"",
+    "chain:spam": "ts-node \"13 - Behavioral - Chain of Responsibility/use-case-email-spam-filter-chain.ts\""
   },
   "keywords": [
     "design-patterns",
