@@ -56,7 +56,13 @@
     "f9:lens": "ts-node \"Function Patterns/F9 - Lens Pattern/index.ts\"",
     "f10:reader": "ts-node \"Function Patterns/F10 - Reader Pattern/index.ts\"",
     "run-pattern": "ts-node",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "adapter": "ts-node \"6 - Structural - Adapter/index.ts\"",
+    "adapter:payment": "ts-node \"6 - Structural - Adapter/use-case-payment-gateway-adapter.ts\"",
+    "adapter:database": "ts-node \"6 - Structural - Adapter/use-case-database-driver-adapter.ts\"",
+    "adapter:file": "ts-node \"6 - Structural - Adapter/use-case-file-format-converter-adapter.ts\"",
+    "adapter:soap": "ts-node \"6 - Structural - Adapter/use-case-soap-user-service-adapter.ts\"",
+    "adapter:logger": "ts-node \"6 - Structural - Adapter/use-case-logger-winston-adapter.ts\""
   },
   "keywords": [
     "design-patterns",
