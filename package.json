@@ -92,7 +92,13 @@
     "flyweight:map": "ts-node \"11 - Structural - Flyweight/use-case-map-marker-flyweight.ts\"",
     "flyweight:particles": "ts-node \"11 - Structural - Flyweight/use-case-particle-system-flyweight.ts\"",
     "flyweight:glyphs": "ts-node \"11 - Structural - Flyweight/use-case-text-glyph-flyweight.ts\"",
-    "flyweight:styles": "ts-node \"11 - Structural - Flyweight/use-case-ui-style-flyweight.ts\""
+    "flyweight:styles": "ts-node \"11 - Structural - Flyweight/use-case-ui-style-flyweight.ts\"",
+    "proxy": "ts-node \"12 - Structural - Proxy/index.ts\"",
+    "proxy:cache": "ts-node \"12 - Structural - Proxy/use-case-cache-proxy.ts\"",
+    "proxy:security": "ts-node \"12 - Structural - Proxy/use-case-security-proxy.ts\"",
+    "proxy:remote": "ts-node \"12 - Structural - Proxy/use-case-remote-proxy.ts\"",
+    "proxy:lazy": "ts-node \"12 - Structural - Proxy/use-case-lazy-image-proxy.ts\"",
+    "proxy:rate": "ts-node \"12 - Structural - Proxy/use-case-rate-limit-proxy.ts\""
   },
   "keywords": [
     "design-patterns",
