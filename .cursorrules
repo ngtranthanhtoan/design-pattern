@@ -71,6 +71,81 @@ This is a comprehensive learning repository for Design Patterns with hands-on ex
 - Document edge cases and error handling
 - Reference pattern theory where applicable
 
+## Reflection Articles
+
+The `Reflection/` folder hosts in-depth comparative or theoretical articles (e.g. *factory-method-vs-abstract-factory.md*, *adapter-pattern-in-functional-programming.md*).
+
+### Purpose
+- Synthesize learnings across multiple patterns or paradigms
+- Provide advanced conceptual explanations and trade-off analysis
+- Serve as long-form reading material that complements runnable examples
+
+### Structure Template
+1. Executive summary / key-takeaways (optional)
+2. Sub-sections with clear headings (e.g. *OO Perspective*, *Functional Perspective*, *Real-World Examples*)
+3. Practical code snippets (TypeScript when possible) – **no toy pseudo-code**
+4. Comparison tables, UML or Mermaid diagrams where beneficial
+5. "Best practices" and "Common pitfalls" sections
+6. Further reading / references
+
+### Writing Guidelines
+- Keep a professional, instructional tone; favour clarity over jargon
+- Back claims with concrete examples, metrics, or citations
+- Show real-world APIs or libraries (Node core, express, fp-ts, etc.)
+- Use fenced code blocks with language identifiers
+- Keep line length reasonable (< 120 chars) to ease diffing
+- Validate Mermaid diagrams compile in Markdown renderers
+
+### Quality Checklist
+- ✅ Includes at least **2-3 production-grade examples**
+- ✅ Explains why each example matters in real projects
+- ✅ Provides code that can be copy-pasted into repo or REPL
+- ✅ Cross-links to related pattern folders where relevant
+- ✅ Reviewed for technical accuracy and coherence
+
+## Functional Patterns
+
+Functional pattern folders live under `Function Patterns/` and demonstrate the FP equivalent of traditional OO design patterns.
+
+### Folder Naming
+- `Function Patterns/F[number] - [Pattern Name]`
+- Example: `Function Patterns/F4 - Decorator Pattern - Function Composition`
+
+### Required Files per FP Pattern
+1. `index.ts` – Pattern overview and runnable navigation (mirrors OO `index.ts` style)
+2. `introduction.md` – Functional theory, algebraic context, pros/cons, when to use/avoid
+3. `use-case.md` – 3–5 real-world implemented examples in Problem/Solution format
+4. `use-case-[specific-example].ts` – Focused runnable demos (may include multiple files)
+
+### Coding Standards (FP-Specific)
+- Prefer **pure functions** and **immutable data**; avoid classes unless interop is the lesson
+- Use algebraic data types (`Option`, `Either`, `Task`, etc.) where they clarify intent
+- Compose with `pipe` / `flow` (fp-ts) or native HOFs (`map`, `reduce`, `flatMap`)
+- Document performance implications of composition when non-trivial
+- Provide explicit types, `readonly` modifiers, and avoid `any`
+- Demonstrate interop with Node/browser APIs when relevant (e.g. `promisify`, EventEmitter→Promise)
+
+### Package.json Script Pattern
+```json
+{
+  "f[number]": "ts-node \"Function Patterns/F[number] - [Pattern Name]/index.ts\"",
+  "f[number]:[example]": "ts-node \"Function Patterns/F[number] - [Pattern Name]/use-case-[example].ts\""
+}
+```
+
+### Testing & Demonstrations
+- Each `use-case-*.ts` shows both **usage** and **edge-case tests**
+- Include at least one real API integration (filesystem, network, etc.) for pragmatic value
+- Finish with `exit(0)` to align with runnable-script convention
+
+### Quality Checklist
+- ✅ Pure, side-effect-free core logic
+- ✅ Demonstrates composition and reuse
+- ✅ Clear, production-relevant examples (no toy hello-world)
+- ✅ Thorough comments explaining FP concepts and trade-offs
+- ✅ TypeScript compiles without `any`
+- ✅ Scripts added to `package.json` following the pattern
+
 ## Implementation Approach
 
 ### When Creating New Patterns
