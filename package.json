@@ -119,7 +119,15 @@
     "iterator:filesystem": "ts-node \"15 - Behavioral - Iterator/use-case-filesystem.ts\"",
     "iterator:tree": "ts-node \"15 - Behavioral - Iterator/use-case-tree.ts\"",
     "iterator:stream": "ts-node \"15 - Behavioral - Iterator/use-case-stream.ts\"",
-    "iterator:gui": "ts-node \"15 - Behavioral - Iterator/use-case-gui.ts\""
+    "iterator:gui": "ts-node \"15 - Behavioral - Iterator/use-case-gui.ts\"",
+    "iterator:notification": "ts-node \"15 - Behavioral - Iterator/use-case-notification-system.ts\"",
+    "mediator": "ts-node \"16 - Behavioral - Mediator/index.ts\"",
+    "mediator:airtraffic": "ts-node \"16 - Behavioral - Mediator/use-case-airtraffic.ts\"",
+    "mediator:chat": "ts-node \"16 - Behavioral - Mediator/use-case-chat.ts\"",
+    "mediator:smarthome": "ts-node \"16 - Behavioral - Mediator/use-case-smarthome.ts\"",
+    "mediator:ecommerce": "ts-node \"16 - Behavioral - Mediator/use-case-ecommerce.ts\"",
+    "mediator:gameengine": "ts-node \"16 - Behavioral - Mediator/use-case-gameengine.ts\"",
+    "mediator:car-system": "ts-node \"16 - Behavioral - Mediator/use-case-car-system-mediator.ts\""
   },
   "keywords": [
     "design-patterns",

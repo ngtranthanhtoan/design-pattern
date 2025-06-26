@@ -108,6 +108,27 @@ Implement iterators that can traverse UI component trees in different ways, prov
 
 **Demo**: `npm run iterator:gui`
 
+## Use Case 6: Notification System Rendering
+
+### Problem
+A notification system needs to render different types of notifications (info, warning, error, success) with various filtering criteria (unread, priority, category, time range) and display formats (compact, detailed, summary) without tightly coupling the rendering logic to the notification data structure.
+
+### Solution
+Implement specialized iterators for different filtering strategies and a flexible renderer that can work with any iterator to display notifications in various formats.
+
+**Target Interface**: `NotificationCollection` with multiple iterator creation methods  
+**Key Features**:
+- Multiple filtering iterators (unread, priority-based, category-based, time-range-based)
+- Flexible rendering system with three display formats (compact, detailed, summary)
+- Rich notification data model with type, priority, category, and read status
+- Visual indicators and icons for different notification types and priorities
+- Statistical summary generation with breakdowns by type, priority, and category
+- Time-based filtering for date range queries
+- Extensible iterator system for custom filtering strategies
+- Realistic notification scenarios (system alerts, security events, user messages)
+
+**Demo**: `npm run iterator:notification`
+
 ## Best Practices
 
 - **Lazy Evaluation**: Load elements only when needed to conserve memory
