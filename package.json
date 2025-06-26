@@ -106,7 +106,14 @@
     "chain:logging": "ts-node \"13 - Behavioral - Chain of Responsibility/use-case-logging-chain.ts\"",
     "chain:purchase": "ts-node \"13 - Behavioral - Chain of Responsibility/use-case-purchase-approval-chain.ts\"",
     "chain:support": "ts-node \"13 - Behavioral - Chain of Responsibility/use-case-support-escalation-chain.ts\"",
-    "chain:spam": "ts-node \"13 - Behavioral - Chain of Responsibility/use-case-email-spam-filter-chain.ts\""
+    "chain:spam": "ts-node \"13 - Behavioral - Chain of Responsibility/use-case-email-spam-filter-chain.ts\"",
+    "command": "ts-node \"14 - Behavioral - Command/index.ts\"",
+    "command:text-editor": "ts-node \"14 - Behavioral - Command/use-case-text-editor.ts\"",
+    "command:smart-home": "ts-node \"14 - Behavioral - Command/use-case-smart-home.ts\"",
+    "command:restaurant": "ts-node \"14 - Behavioral - Command/use-case-restaurant.ts\"",
+    "command:game-input": "ts-node \"14 - Behavioral - Command/use-case-game-input.ts\"",
+    "command:database": "ts-node \"14 - Behavioral - Command/use-case-database.ts\"",
+    "command:react-form": "ts-node \"14 - Behavioral - Command/use-case-react-form.ts\""
   },
   "keywords": [
     "design-patterns",
