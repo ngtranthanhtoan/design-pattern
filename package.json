@@ -127,7 +127,13 @@
     "mediator:smarthome": "ts-node \"16 - Behavioral - Mediator/use-case-smarthome.ts\"",
     "mediator:ecommerce": "ts-node \"16 - Behavioral - Mediator/use-case-ecommerce.ts\"",
     "mediator:gameengine": "ts-node \"16 - Behavioral - Mediator/use-case-gameengine.ts\"",
-    "mediator:car-system": "ts-node \"16 - Behavioral - Mediator/use-case-car-system-mediator.ts\""
+    "mediator:car-system": "ts-node \"16 - Behavioral - Mediator/use-case-car-system-mediator.ts\"",
+    "memento": "ts-node \"17 - Behavioral - Memento/index.ts\"",
+    "memento:text-editor": "ts-node \"17 - Behavioral - Memento/use-case-text-editor.ts\"",
+    "memento:graphics": "ts-node \"17 - Behavioral - Memento/use-case-graphics.ts\"",
+    "memento:database": "ts-node \"17 - Behavioral - Memento/use-case-database.ts\"",
+    "memento:game": "ts-node \"17 - Behavioral - Memento/use-case-game.ts\"",
+    "memento:configuration": "ts-node \"17 - Behavioral - Memento/use-case-configuration.ts\""
   },
   "keywords": [
     "design-patterns",
