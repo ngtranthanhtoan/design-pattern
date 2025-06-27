@@ -103,7 +103,16 @@ class Database {
   // Restore state from memento
   restore(memento: Memento): void {
     console.log('🔄 Restoring database state...');
-    this.state = memento.getState();
+    const restoredState = memento.getState();
+    
+    // Properly reconstruct the state with Map objects
+    this.state = {
+      tables: new Map(restoredState.tables),
+      connections: new Map(restoredState.connections),
+      locks: new Map(restoredState.locks),
+      transactionId: restoredState.transactionId,
+      isolationLevel: restoredState.isolationLevel
+    };
   }
 
   // Database operations
