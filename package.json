@@ -133,7 +133,13 @@
     "memento:graphics": "ts-node \"17 - Behavioral - Memento/use-case-graphics.ts\"",
     "memento:database": "ts-node \"17 - Behavioral - Memento/use-case-database.ts\"",
     "memento:game": "ts-node \"17 - Behavioral - Memento/use-case-game.ts\"",
-    "memento:configuration": "ts-node \"17 - Behavioral - Memento/use-case-configuration.ts\""
+    "memento:configuration": "ts-node \"17 - Behavioral - Memento/use-case-configuration.ts\"",
+    "observer": "ts-node \"18 - Behavioral - Observer/index.ts\"",
+    "observer:stock-market": "ts-node \"18 - Behavioral - Observer/use-case-stock-market.ts\"",
+    "observer:social-media": "ts-node \"18 - Behavioral - Observer/use-case-social-media.ts\"",
+    "observer:logging": "ts-node \"18 - Behavioral - Observer/use-case-logging-system.ts\"",
+    "observer:weather": "ts-node \"18 - Behavioral - Observer/use-case-weather-station.ts\"",
+    "observer:game-engine": "ts-node \"18 - Behavioral - Observer/use-case-game-engine.ts\""
   },
   "keywords": [
     "design-patterns",
