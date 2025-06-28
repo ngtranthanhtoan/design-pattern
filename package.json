@@ -139,7 +139,8 @@
     "observer:social-media": "ts-node \"18 - Behavioral - Observer/use-case-social-media.ts\"",
     "observer:logging": "ts-node \"18 - Behavioral - Observer/use-case-logging-system.ts\"",
     "observer:weather": "ts-node \"18 - Behavioral - Observer/use-case-weather-station.ts\"",
-    "observer:game-engine": "ts-node \"18 - Behavioral - Observer/use-case-game-engine.ts\""
+    "observer:game-engine": "ts-node \"18 - Behavioral - Observer/use-case-game-engine.ts\"",
+    "observer:slack": "ts-node \"18 - Behavioral - Observer/use-case-slack-notification.ts\""
   },
   "keywords": [
     "design-patterns",
