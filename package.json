@@ -140,7 +140,22 @@
     "observer:logging": "ts-node \"18 - Behavioral - Observer/use-case-logging-system.ts\"",
     "observer:weather": "ts-node \"18 - Behavioral - Observer/use-case-weather-station.ts\"",
     "observer:game-engine": "ts-node \"18 - Behavioral - Observer/use-case-game-engine.ts\"",
-    "observer:slack": "ts-node \"18 - Behavioral - Observer/use-case-slack-notification.ts\""
+    "observer:slack": "ts-node \"18 - Behavioral - Observer/use-case-slack-notification.ts\"",
+    "visitor": "ts-node \"21 - Behavioral - Visitor/index.ts\"",
+    "visitor:document": "ts-node \"21 - Behavioral - Visitor/use-case-document-processing.ts\"",
+    "visitor:ast": "ts-node \"21 - Behavioral - Visitor/use-case-ast-compiler.ts\"",
+    "visitor:graphics": "ts-node \"21 - Behavioral - Visitor/use-case-graphics-system.ts\"",
+    "visitor:filesystem": "ts-node \"21 - Behavioral - Visitor/use-case-file-system.ts\"",
+    "visitor:game": "ts-node \"21 - Behavioral - Visitor/use-case-game-engine.ts\"",
+    "visitor:config": "ts-node \"21 - Behavioral - Visitor/use-case-configuration-system.ts\"",
+    "strategy": "ts-node \"22 - Behavioral - Strategy/index.ts\"",
+    "strategy:payment": "ts-node \"22 - Behavioral - Strategy/use-case-payment-processing.ts\"",
+    "strategy:validation": "ts-node \"22 - Behavioral - Strategy/use-case-data-validation.ts\"",
+    "strategy:sorting": "ts-node \"22 - Behavioral - Strategy/use-case-sorting-algorithms.ts\"",
+    "strategy:compression": "ts-node \"22 - Behavioral - Strategy/use-case-compression-system.ts\"",
+    "strategy:pricing": "ts-node \"22 - Behavioral - Strategy/use-case-pricing-strategy.ts\"",
+    "strategy:authentication": "ts-node \"22 - Behavioral - Strategy/use-case-authentication-system.ts\"",
+    "strategy:notification": "ts-node \"22 - Behavioral - Strategy/use-case-notification-system.ts\""
   },
   "keywords": [
     "design-patterns",
