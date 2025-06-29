@@ -17,6 +17,32 @@ This document provides a detailed mapping of classic object-oriented (OO) design
 **Drawbacks:**
 - Global state, hard to test, not thread-safe by default.
 
+### OO Example
+```typescript
+// OOP Singleton implementation in TypeScript
+class AppConfig {
+  private static instance: AppConfig;
+  private constructor(private readonly env: string = 'production') {}
+
+  static getInstance(): AppConfig {
+    if (!AppConfig.instance) {
+      AppConfig.instance = new AppConfig();
+    }
+    return AppConfig.instance;
+  }
+
+  getEnv() {
+    return this.env;
+  }
+}
+
+// Usage
+const configA = AppConfig.getInstance();
+const configB = AppConfig.getInstance();
+console.log(configA === configB); // true
+```
+> **Why this is OO:** The class encapsulates state and controls instantiation via a private constructor and a static accessor, ensuring a single global instance.
+
 ### FP Equivalent
 **Functional Approach:**
 - Use a module or closure to encapsulate state, or simply use pure functions (stateless).
@@ -24,20 +50,23 @@ This document provides a detailed mapping of classic object-oriented (OO) design
 
 **Example:**
 ```typescript
-// Pure function (stateless, no singleton needed)
-export function log(message: string) {
-  console.log(message);
-}
+// Functional Singleton using closure (App configuration)
+export const createConfig = (() => {
+  let instance: { env: string } | null = null;
 
-// With state (closure)
-export const createLogger = () => {
-  let logs: string[] = [];
-  return {
-    log: (msg: string) => { logs.push(msg); console.log(msg); },
-    getLogs: () => [...logs]
+  return () => {
+    if (!instance) {
+      instance = { env: 'production' }; // could load from env variables, etc.
+    }
+    return instance;
   };
-};
-const logger = createLogger(); // Only one instance if you want
+})();
+
+// Usage
+const cfgA = createConfig();
+const cfgB = createConfig();
+console.log(cfgA === cfgB); // true
+console.log(cfgA.env);      // 'production'
 ```
 **FP Best Practice:**
 Prefer stateless pure functions. If you need state, use closures, not global singletons.
@@ -52,6 +81,53 @@ Prefer stateless pure functions. If you need state, use closures, not global sin
 **Typical OO Implementation:**
 - Abstract class with a factory method
 - Subclasses override the method to create specific objects
+
+### OO Example
+```typescript
+// OOP Factory Method implementation in TypeScript
+abstract class DocumentParser {
+  abstract parse(content: string): unknown;
+}
+
+class JSONParser extends DocumentParser {
+  parse(content: string) {
+    return JSON.parse(content);
+  }
+}
+
+class CSVParser extends DocumentParser {
+  parse(content: string) {
+    // A real implementation would split lines, etc.
+    return content.split(',').map(item => item.trim());
+  }
+}
+
+abstract class ParserFactory {
+  abstract createParser(): DocumentParser;
+}
+
+class JSONParserFactory extends ParserFactory {
+  createParser() {
+    return new JSONParser();
+  }
+}
+
+class CSVParserFactory extends ParserFactory {
+  createParser() {
+    return new CSVParser();
+  }
+}
+
+// Usage
+function clientCode(factory: ParserFactory, raw: string) {
+  const parser = factory.createParser();
+  console.log(parser.parse(raw));
+}
+
+clientCode(new JSONParserFactory(), '{"foo": 42}');
+clientCode(new CSVParserFactory(), 'foo, 42');
+```
+> **Why this is OO:** The factory subclasses decide which concrete parser to instantiate, allowing the client to remain independent of concrete classes.
 
 ### FP Equivalent
 **Functional Approach:**
@@ -85,6 +161,52 @@ Use functions to create and compose objects, not classes.
 - Abstract factory interface
 - Concrete factories for different families
 - Abstract product interfaces
+
+### OO Example
+```typescript
+// OOP Abstract Factory implementation in TypeScript
+// Product interfaces
+interface Button { render(): string; }
+interface Input { render(): string; }
+interface Modal { render(): string; }
+
+// Concrete products – Material UI
+class MaterialButton implements Button { render() { return 'Material Button'; } }
+class MaterialInput implements Input { render() { return 'Material Input'; } }
+class MaterialModal implements Modal { render() { return 'Material Modal'; } }
+
+// Concrete products – Bootstrap UI
+class BootstrapButton implements Button { render() { return 'Bootstrap Button'; } }
+class BootstrapInput implements Input { render() { return 'Bootstrap Input'; } }
+class BootstrapModal implements Modal { render() { return 'Bootstrap Modal'; } }
+
+// Abstract factory
+interface UIFactory { createButton(): Button; createInput(): Input; createModal(): Modal; }
+
+// Concrete factories
+class MaterialUIFactory implements UIFactory {
+  createButton() { return new MaterialButton(); }
+  createInput() { return new MaterialInput(); }
+  createModal() { return new MaterialModal(); }
+}
+
+class BootstrapUIFactory implements UIFactory {
+  createButton() { return new BootstrapButton(); }
+  createInput() { return new BootstrapInput(); }
+  createModal() { return new BootstrapModal(); }
+}
+
+// Client code
+function renderDialog(factory: UIFactory) {
+  console.log(factory.createButton().render());
+  console.log(factory.createInput().render());
+  console.log(factory.createModal().render());
+}
+
+renderDialog(new MaterialUIFactory());
+renderDialog(new BootstrapUIFactory());
+```
+> **Why this is OO:** Concrete factory classes encapsulate the creation of related objects, letting the client stay agnostic of concrete product classes.
 
 ### FP Equivalent
 **Functional Approach:**
@@ -128,6 +250,57 @@ Use factory functions to create families of related behaviors.
 - Director class to orchestrate building
 - Complex object construction
 
+### OO Example
+```typescript
+// OOP Builder implementation in TypeScript (Fluent API)
+class SQLQuery {
+  constructor(
+    public readonly selectClause: string,
+    public readonly fromClause: string,
+    public readonly whereClause: string,
+  ) {}
+
+  toString() {
+    return `${this.selectClause} ${this.fromClause} ${this.whereClause}`.trim();
+  }
+}
+
+class SQLQueryBuilder {
+  private selectClause = '';
+  private fromClause = '';
+  private whereClause = '';
+
+  select(fields: string[]): this {
+    this.selectClause = `SELECT ${fields.join(', ')}`;
+    return this;
+  }
+
+  from(table: string): this {
+    this.fromClause = `FROM ${table}`;
+    return this;
+  }
+
+  where(condition: string): this {
+    this.whereClause = `WHERE ${condition}`;
+    return this;
+  }
+
+  build(): SQLQuery {
+    return new SQLQuery(this.selectClause, this.fromClause, this.whereClause);
+  }
+}
+
+// Usage
+const query = new SQLQueryBuilder()
+  .select(['id', 'name'])
+  .from('users')
+  .where('active = 1')
+  .build();
+
+console.log(query.toString()); // SELECT id, name FROM users WHERE active = 1
+```
+> **Why this is OO:** The SQLQueryBuilder mutates its internal state through fluent setters before finally producing an immutable `SQLQuery` object.
+
 ### FP Equivalent
 **Functional Approach:**
 - Use function composition and fluent interfaces.
@@ -170,6 +343,34 @@ Use function composition and immutable data for building complex objects.
 - Concrete prototypes
 - Registry of prototypes
 
+### OO Example
+```typescript
+// OOP Prototype implementation in TypeScript
+interface Prototype<T> {
+  clone(): T;
+}
+
+class UserProfile implements Prototype<UserProfile> {
+  constructor(
+    public name: string,
+    public email: string,
+    public preferences: Record<string, unknown> = {},
+  ) {}
+
+  clone(): UserProfile {
+    return new UserProfile(this.name, this.email, { ...this.preferences });
+  }
+}
+
+// Usage
+const originalProfile = new UserProfile('Alice', 'alice@example.com', { theme: 'dark' });
+const clonedProfile = originalProfile.clone();
+
+console.log(originalProfile === clonedProfile); // false
+console.log(clonedProfile.preferences); // { theme: 'dark' }
+```
+> **Why this is OO:** The `clone` method allows the client to create duplicates without knowing the concrete class of the object, following the classic Prototype contract.
+
 ### FP Equivalent
 **Functional Approach:**
 - Use object spread, structured cloning, or pure functions to create copies.
@@ -177,20 +378,18 @@ Use function composition and immutable data for building complex objects.
 
 **Example:**
 ```typescript
-// OO: Prototype -> clone() -> new instance
 // FP:
-const createUser = (name: string, email: string) => ({
+const createProfile = (name: string, email: string, preferences: Record<string, unknown> = {}) => ({
   name,
   email,
-  createdAt: new Date()
+  preferences,
 });
 
-const cloneUser = (user: any) => ({ ...user });
-const deepCloneUser = (user: any) => JSON.parse(JSON.stringify(user));
+const cloneProfile = <T>(profile: T): T => ({ ...profile });
 
 // Usage
-const originalUser = createUser('John', 'john@example.com');
-const clonedUser = cloneUser(originalUser);
+const originalProfileFP = createProfile('Alice', 'alice@example.com', { theme: 'dark' });
+const clonedProfileFP = cloneProfile(originalProfileFP);
 ```
 **FP Best Practice:**
 Use immutable data and pure functions for cloning.
@@ -206,6 +405,33 @@ Use immutable data and pure functions for cloning.
 - Adapter class that implements target interface
 - Wraps adaptee object
 - Translates calls
+
+### OO Example
+```typescript
+// Target interface expected by new codebase
+interface NewAPI { process(data: { value: string }): { result: string }; }
+
+// Legacy service with a different signature (Adaptee)
+class OldService {
+  processLegacy(data: string): string {
+    return `processed: ${data}`;
+  }
+}
+
+// Adapter makes OldService conform to NewAPI
+class OldServiceAdapter implements NewAPI {
+  constructor(private readonly adaptee: OldService) {}
+
+  process(data: { value: string }): { result: string } {
+    return { result: this.adaptee.processLegacy(data.value) };
+  }
+}
+
+// Usage
+const adapter = new OldServiceAdapter(new OldService());
+console.log(adapter.process({ value: 'test' })); // { result: 'processed: test' }
+```
+> **Why this is OO:** `OldServiceAdapter` implements the target interface and delegates work to the incompatible `OldService`, translating the call on the fly.
 
 ### FP Equivalent
 **Functional Approach:**
@@ -244,6 +470,39 @@ Use higher-order functions to adapt interfaces.
 - Implementation interface
 - Bridge between them
 
+### OO Example
+```typescript
+// Implementation hierarchy
+interface Renderer { render(shape: string): string; }
+
+class VectorRenderer implements Renderer {
+  render(shape: string) { return `Drawing ${shape} as vector`; }
+}
+
+class RasterRenderer implements Renderer {
+  render(shape: string) { return `Drawing ${shape} as raster`; }
+}
+
+// Abstraction hierarchy
+abstract class Shape {
+  constructor(protected renderer: Renderer) {}
+  abstract draw(): string;
+}
+
+class Circle extends Shape {
+  draw() { return this.renderer.render('circle'); }
+}
+
+class Square extends Shape {
+  draw() { return this.renderer.render('square'); }
+}
+
+// Usage
+console.log(new Circle(new VectorRenderer()).draw()); // Drawing circle as vector
+console.log(new Square(new RasterRenderer()).draw()); // Drawing square as raster
+```
+> **Why this is OO:** Abstraction (`Shape`) delegates rendering to a separate implementation hierarchy (`Renderer`), so both dimensions vary independently.
+
 ### FP Equivalent
 **Functional Approach:**
 - Pass implementation as function parameter.
@@ -280,6 +539,44 @@ Pass implementations as function parameters.
 - Component interface
 - Leaf and Composite classes
 - Recursive structure
+
+### OO Example
+```typescript
+// Component
+interface FileSystemComponent {
+  getSize(): number;
+  list(): string[];
+}
+
+// Leaf
+class File implements FileSystemComponent {
+  constructor(private name: string, private size: number) {}
+  getSize() { return this.size; }
+  list() { return [this.name]; }
+}
+
+// Composite
+class Directory implements FileSystemComponent {
+  private children: FileSystemComponent[] = [];
+  constructor(private name: string) {}
+
+  add(child: FileSystemComponent) { this.children.push(child); }
+
+  getSize() { return this.children.reduce((s, c) => s + c.getSize(), 0); }
+  list() { return this.children.flatMap(c => c.list()); }
+}
+
+// Usage
+const root = new Directory('root');
+root.add(new File('a.txt', 100));
+const images = new Directory('images');
+images.add(new File('logo.png', 200));
+root.add(images);
+
+console.log(root.getSize()); // 300
+console.log(root.list());    // ['a.txt', 'logo.png']
+```
+> **Why this is OO:** `Directory` treats individual `File` objects and other `Directory` objects uniformly through the `FileSystemComponent` interface.
 
 ### FP Equivalent
 **Functional Approach:**
@@ -323,6 +620,43 @@ Use algebraic data types and pattern matching for tree structures.
 - Concrete component
 - Decorator classes that wrap components
 
+### OO Example
+```typescript
+// Component
+interface Coffee { cost(): number; description(): string; }
+
+// Concrete component
+class SimpleCoffee implements Coffee {
+  cost() { return 5; }
+  description() { return 'Simple coffee'; }
+}
+
+// Decorator base
+abstract class CoffeeDecorator implements Coffee {
+  constructor(protected coffee: Coffee) {}
+  abstract cost(): number;
+  abstract description(): string;
+}
+
+class MilkDecorator extends CoffeeDecorator {
+  cost() { return this.coffee.cost() + 1; }
+  description() { return this.coffee.description() + ' + milk'; }
+}
+
+class SugarDecorator extends CoffeeDecorator {
+  cost() { return this.coffee.cost() + 0.5; }
+  description() { return this.coffee.description() + ' + sugar'; }
+}
+
+// Usage
+let coffee: Coffee = new SimpleCoffee();
+coffee = new MilkDecorator(coffee);
+coffee = new SugarDecorator(coffee);
+console.log(coffee.description()); // Simple coffee + milk + sugar
+console.log(coffee.cost());        // 6.5
+```
+> **Why this is OO:** Decorators wrap the original component to extend behaviour while conforming to the same interface.
+
 ### FP Equivalent
 **Functional Approach:**
 - Use function composition and higher-order functions.
@@ -360,6 +694,26 @@ Use function composition for adding behavior.
 **Typical OO Implementation:**
 - Facade class that simplifies complex subsystem
 - Hides complexity behind simple interface
+
+### OO Example
+```typescript
+class Validator { static validate(email: string) { return email.includes('@'); } }
+class Mailer { static send(email: string, msg: string) { return `Sent to ${email}`; } }
+class LoggerSvc { static log(email: string) { console.log(`Logged: ${email}`); } }
+
+class EmailServiceFacade {
+  send(email: string, message: string) {
+    if (!Validator.validate(email)) throw new Error('Invalid email');
+    const result = Mailer.send(email, message);
+    LoggerSvc.log(email);
+    return result;
+  }
+}
+
+// Usage
+new EmailServiceFacade().send('user@example.com', 'Hello!');
+```
+> **Why this is OO:** The facade class offers a single high-level `send` method while hiding three subsystem classes.
 
 ### FP Equivalent
 **Functional Approach:**
@@ -403,6 +757,33 @@ Use functions to orchestrate complex operations.
 - Concrete flyweight with shared state
 - Flyweight factory
 
+### OO Example
+```typescript
+interface Character { draw(): void; }
+
+class CharacterGlyph implements Character {
+  constructor(private char: string, private font: string, private size: number) {}
+  draw() { console.log(`${this.char}-${this.font}-${this.size}`); }
+}
+
+class GlyphFactory {
+  private static cache = new Map<string, CharacterGlyph>();
+  static get(char: string): CharacterGlyph {
+    if (!this.cache.has(char)) {
+      this.cache.set(char, new CharacterGlyph(char, 'Arial', 12));
+    }
+    return this.cache.get(char)!;
+  }
+}
+
+// Usage
+const g1 = GlyphFactory.get('A');
+const g2 = GlyphFactory.get('A');
+console.log(g1 === g2); // true
+g1.draw();
+```
+> **Why this is OO:** The factory ensures shared small objects (`CharacterGlyph`) are reused, minimising memory footprint.
+
 ### FP Equivalent
 **Functional Approach:**
 - Use memoization and shared immutable data.
@@ -442,6 +823,39 @@ Use memoization and immutable shared data.
 - Subject interface
 - Real subject
 - Proxy that controls access
+
+### OO Example
+```typescript
+// Subject interface
+interface DataService { fetch(): number; }
+
+// Real subject performing an expensive operation
+class RealDataService implements DataService {
+  fetch(): number {
+    console.log('Performing expensive operation...');
+    return Math.random();
+  }
+}
+
+// Proxy that adds lazy-initialised caching
+class CachedDataServiceProxy implements DataService {
+  private cache: number | null = null;
+  constructor(private readonly real: DataService) {}
+
+  fetch(): number {
+    if (this.cache === null) {
+      this.cache = this.real.fetch();
+    }
+    return this.cache;
+  }
+}
+
+// Usage
+const service: DataService = new CachedDataServiceProxy(new RealDataService());
+console.log(service.fetch()); // performs real fetch
+console.log(service.fetch()); // returns cached result
+```
+> **Why this is OO:** The proxy implements the same `DataService` interface as the real subject and transparently adds caching while preserving the client contract.
 
 ### FP Equivalent
 **Functional Approach:**
@@ -485,10 +899,64 @@ Use wrapper functions and monads for controlled access.
 ### OO Approach
 **Intent:** Pass requests along a chain of handlers until one handles it.
 
-**Typical OO Implementation:**
-- Handler interface
-- Concrete handlers
-- Chain of handlers
+### OO Example
+```typescript
+// Handler interface
+interface Handler {
+  setNext(handler: Handler): Handler;
+  handle(request: any): any | null;
+}
+
+// Base handler with default pass-along logic
+abstract class AbstractHandler implements Handler {
+  private next: Handler | null = null;
+
+  setNext(handler: Handler): Handler {
+    this.next = handler;
+    return handler;
+  }
+
+  handle(request: any): any | null {
+    return this.next ? this.next.handle(request) : null;
+  }
+}
+
+// Concrete handlers
+class EmailValidationHandler extends AbstractHandler {
+  handle(request: any): any | null {
+    if (!request.email?.includes('@')) {
+      console.log('Email invalid');
+      return null;
+    }
+    return super.handle(request) || request;
+  }
+}
+
+class AgeValidationHandler extends AbstractHandler {
+  handle(request: any): any | null {
+    if (request.age < 18) {
+      console.log('Under age');
+      return null;
+    }
+    return super.handle(request) || request;
+  }
+}
+
+class ProcessingHandler extends AbstractHandler {
+  handle(request: any): any | null {
+    return { ...request, processed: true };
+  }
+}
+
+// Build chain
+const emailHandler = new EmailValidationHandler();
+emailHandler.setNext(new AgeValidationHandler()).setNext(new ProcessingHandler());
+
+// Usage
+console.log(emailHandler.handle({ email: 'bob@example.com', age: 22 }));
+console.log(emailHandler.handle({ email: 'invalid', age: 22 })); // null
+```
+> **Why this is OO:** Each handler encapsulates a single responsibility and the chain passes the request until one handler processes it, following the classic pattern structure.
 
 ### FP Equivalent
 **Functional Approach:**
@@ -531,10 +999,49 @@ Use function composition and monads for request processing.
 ### OO Approach
 **Intent:** Encapsulate a request as an object, allowing parameterization and queuing.
 
-**Typical OO Implementation:**
-- Command interface
-- Concrete commands
-- Invoker and receiver
+### OO Example
+```typescript
+// Invoker and receiver
+class Light {
+  on() { console.log('Light is ON'); }
+  off() { console.log('Light is OFF'); }
+}
+
+// Command interface
+interface Command {
+  execute(): void;
+}
+
+// Concrete commands
+class LightOnCommand implements Command {
+  constructor(private readonly light: Light) {}
+  execute() { this.light.on(); }
+}
+
+class LightOffCommand implements Command {
+  constructor(private readonly light: Light) {}
+  execute() { this.light.off(); }
+}
+
+// Invoker holding a queue (macro-commands)
+class RemoteControl {
+  private queue: Command[] = [];
+  addCommand(cmd: Command) { this.queue.push(cmd); }
+  run() {
+    while (this.queue.length) {
+      this.queue.shift()!.execute();
+    }
+  }
+}
+
+// Usage
+const light = new Light();
+const remote = new RemoteControl();
+remote.addCommand(new LightOnCommand(light));
+remote.addCommand(new LightOffCommand(light));
+remote.run();
+```
+> **Why this is OO:** Requests are encapsulated as objects, queued by the invoker, and executed on the receiver, enabling flexible macro-recording just like the FP queue example.
 
 ### FP Equivalent
 **Functional Approach:**
@@ -578,10 +1085,37 @@ Use function objects and queues for command processing.
 ### OO Approach
 **Intent:** Provide a way to access elements of a collection without exposing its underlying representation.
 
-**Typical OO Implementation:**
-- Iterator interface
-- Concrete iterators
-- Collection interface
+### OO Example
+```typescript
+// Collection interface
+interface IterableCollection {
+  [Symbol.iterator](): Iterator<any>;
+}
+
+// Iterable collection implementing the built-in iterator protocol
+class Range implements IterableCollection {
+  constructor(private start: number, private end: number) {}
+
+  [Symbol.iterator](): Iterator<number> {
+    let current = this.start;
+    const end = this.end;
+    return {
+      next(): IteratorResult<number> {
+        if (current <= end) {
+          return { value: current++, done: false };
+        }
+        return { value: undefined as any, done: true };
+      }
+    };
+  }
+}
+
+// Usage (identical output to generator version)
+for (const n of new Range(1, 5)) {
+  console.log(n);
+}
+```
+> **Why this is OO:** The `Range` class exposes an iterator so clients can traverse without knowing the internal representation, matching the FP generator example.
 
 ### FP Equivalent
 **Functional Approach:**
@@ -621,10 +1155,29 @@ Use generators and functional array methods.
 ### OO Approach
 **Intent:** Define an object that encapsulates how a set of objects interact.
 
-**Typical OO Implementation:**
-- Mediator interface
-- Concrete mediator
-- Colleague classes
+### OO Example
+```typescript
+// Colleague classes
+class User {
+  constructor(private name: string, private chat: ChatRoom) {
+    chat.addUser(this);
+  }
+  send(message: string) {
+    console.log(`${this.name} sends: ${message}`);
+    this.chat.send(message, this);
+  }
+  receive(message: string) {
+    console.log(`${this.name} receives: ${message}`);
+  }
+}
+
+// Usage
+const room = new ChatRoom();
+const alice = new User('Alice', room);
+const bob = new User('Bob', room);
+alice.send('Hello Bob');
+```
+> **Why this is OO:** The mediator (`ChatRoom`) centralises interaction logic, decoupling user objects just as the FP event-bus does functionally.
 
 ### FP Equivalent
 **Functional Approach:**
@@ -670,10 +1223,30 @@ Use event buses and function composition for coordination.
 ### OO Approach
 **Intent:** Capture and externalize an object's internal state without violating encapsulation.
 
-**Typical OO Implementation:**
-- Originator class
-- Memento class
-- Caretaker class
+### OO Example
+```typescript
+// Caretaker class
+class History {
+  private stack: EditorMemento[] = [];
+  push(m: EditorMemento) { this.stack.push(m); }
+  pop(): EditorMemento | undefined { return this.stack.pop(); }
+}
+
+// Usage
+const editor = new Editor();
+const history = new History();
+
+editor.setContent('Version 1');
+history.push(editor.createMemento());
+
+editor.setContent('Version 2');
+editor.show(); // Version 2
+
+const v1 = history.pop();
+if (v1) editor.restore(v1);
+editor.show(); // Version 1
+```
+> **Why this is OO:** State snapshots are captured in `EditorMemento` objects managed by a caretaker, mirroring the immutable-state FP example.
 
 ### FP Equivalent
 **Functional Approach:**
@@ -696,7 +1269,7 @@ const createEditor = () => {
   let history: EditorHistory = [];
   
   return {
-    setContent: (content: string) => {
+    setContent: (text: string) => {
       history.push({ ...currentState });
       currentState = { ...currentState, content };
     },
@@ -719,10 +1292,36 @@ Use immutable data and pure functions for state management.
 ### OO Approach
 **Intent:** Define a one-to-many dependency between objects so that when one object changes state, all dependents are notified.
 
-**Typical OO Implementation:**
-- Subject interface
-- Observer interface
-- Concrete subjects and observers
+### OO Example
+```typescript
+// Concrete subjects and observers
+class NewsAgency implements Subject {
+  private observers: Observer[] = [];
+  attach(obs: Observer) { this.observers.push(obs); }
+  detach(obs: Observer) { this.observers = this.observers.filter(o => o !== obs); }
+  notify(news: string) { this.observers.forEach(o => o.update(news)); }
+}
+
+// Concrete observers
+class EmailSubscriber implements Observer {
+  constructor(private email: string) {}
+  update(news: string) { console.log(`Email to ${this.email}: ${news}`); }
+}
+
+class SMSSubscriber implements Observer {
+  constructor(private phone: string) {}
+  update(news: string) { console.log(`SMS to ${this.phone}: ${news}`); }
+}
+
+// Usage
+const agency = new NewsAgency();
+const aliceEmail = new EmailSubscriber('alice@example.com');
+const bobSMS = new SMSSubscriber('123456');
+agency.attach(aliceEmail);
+agency.attach(bobSMS);
+agency.notify('Breaking News!');
+```
+> **Why this is OO:** Concrete observers register with a subject and receive updates, replicating the functional pub-sub sample.
 
 ### FP Equivalent
 **Functional Approach:**
@@ -769,10 +1368,44 @@ Use pub-sub patterns and reactive programming.
 ### OO Approach
 **Intent:** Allow an object to alter its behavior when its internal state changes.
 
-**Typical OO Implementation:**
-- Context class
-- State interface
-- Concrete state classes
+### OO Example
+```typescript
+// Concrete state classes
+class IdleState implements VendingState {
+  constructor(private ctx: VendingMachine) {}
+  insertCoin() { console.log('Insert money first'); }
+  selectProduct() { console.log('Insert money first'); }
+  dispense() { console.log('Insert money first'); }
+}
+
+class HasMoneyState implements VendingState {
+  constructor(private ctx: VendingMachine) {}
+  insertCoin() { console.log('Already have money'); }
+  selectProduct() {
+    console.log('Product selected');
+    this.ctx.setState(new DispensingState(this.ctx));
+  }
+  dispense() { console.log('Select product first'); }
+}
+
+class DispensingState implements VendingState {
+  constructor(private ctx: VendingMachine) {}
+  insertCoin() { console.log('Wait'); }
+  selectProduct() { console.log('Already dispensing'); }
+  dispense() {
+    console.log('Dispensing product');
+    this.ctx.setAmount(0);
+    this.ctx.setState(new IdleState(this.ctx));
+  }
+}
+
+// Usage
+const vm = new VendingMachine();
+vm.insertCoin(2);
+vm.selectProduct();
+vm.dispense();
+```
+> **Why this is OO:** Behaviour changes at runtime by switching out state objects, just like the tagged-union reducer in the FP version.
 
 ### FP Equivalent
 **Functional Approach:**
@@ -828,10 +1461,33 @@ Use algebraic data types and pure functions for state management.
 ### OO Approach
 **Intent:** Define the skeleton of an algorithm in a method, deferring some steps to subclasses.
 
-**Typical OO Implementation:**
-- Abstract class with template method
-- Hook methods for customization
-- Concrete subclasses
+### OO Example
+```typescript
+// Concrete subclasses
+abstract class DataProcessor {
+  // Template method (algorithm skeleton)
+  process(data: any) {
+    if (!this.validate(data)) throw new Error('Invalid data');
+    const transformed = this.transform(data);
+    this.save(transformed);
+    return transformed;
+  }
+
+  protected abstract validate(data: any): boolean;
+  protected abstract transform(data: any): any;
+  protected abstract save(data: any): void;
+}
+
+class CsvProcessor extends DataProcessor {
+  protected validate(data: any): boolean { return Array.isArray(data); }
+  protected transform(data: any): any { return data.join(','); }
+  protected save(data: any): void { console.log('Saving CSV:', data); }
+}
+
+// Usage
+new CsvProcessor().process(['a', 'b', 'c']);
+```
+> **Why this is OO:** The abstract superclass defines the invariant algorithm while subclasses supply specific steps, matching the FP higher-order-function variant.
 
 ### FP Equivalent
 **Functional Approach:**
@@ -877,10 +1533,54 @@ Use higher-order functions for customizable algorithms.
 ### OO Approach
 **Intent:** Represent an operation to be performed on elements of an object structure.
 
-**Typical OO Implementation:**
-- Visitor interface
-- Element interface
-- Concrete visitors and elements
+### OO Example
+```typescript
+// Concrete visitors and elements
+class NumberExpr implements Expression {
+  constructor(public value: number) {}
+  accept<T>(visitor: Visitor<T>): T { return visitor.visitNumber(this); }
+}
+
+class AddExpr implements Expression {
+  constructor(public left: Expression, public right: Expression) {}
+  accept<T>(visitor: Visitor<T>): T { return visitor.visitAdd(this); }
+}
+
+class MultiplyExpr implements Expression {
+  constructor(public left: Expression, public right: Expression) {}
+  accept<T>(visitor: Visitor<T>): T { return visitor.visitMultiply(this); }
+}
+
+// Visitor interface
+interface Visitor<T> {
+  visitNumber(num: NumberExpr): T;
+  visitAdd(expr: AddExpr): T;
+  visitMultiply(expr: MultiplyExpr): T;
+}
+
+// Concrete visitors
+class Evaluator implements Visitor<number> {
+  visitNumber(n: NumberExpr) { return n.value; }
+  visitAdd(e: AddExpr) { return e.left.accept(this) + e.right.accept(this); }
+  visitMultiply(e: MultiplyExpr) { return e.left.accept(this) * e.right.accept(this); }
+}
+
+class PrettyPrinter implements Visitor<string> {
+  visitNumber(n: NumberExpr) { return n.value.toString(); }
+  visitAdd(e: AddExpr) { return `(${e.left.accept(this)} + ${e.right.accept(this)})`; }
+  visitMultiply(e: MultiplyExpr) { return `(${e.left.accept(this)} * ${e.right.accept(this)})`; }
+}
+
+// Usage
+const expr: Expression = new AddExpr(
+  new NumberExpr(5),
+  new MultiplyExpr(new NumberExpr(2), new NumberExpr(3))
+);
+
+console.log(expr.accept(new Evaluator()));      // 11
+console.log(expr.accept(new PrettyPrinter()));  // "(5 + (2 * 3))"
+```
+> **Why this is OO:** New operations are added via visitors without changing the element classes, equivalent to pattern-matching functions in the FP example.
 
 ### FP Equivalent
 **Functional Approach:**
@@ -932,10 +1632,20 @@ Use pattern matching and algebraic data types for operations on data structures.
 ### OO Approach
 **Intent:** Define a family of algorithms, encapsulate each one, and make them interchangeable.
 
-**Typical OO Implementation:**
-- Strategy interface
-- Concrete strategy classes
-- Context class that uses strategies
+### OO Example
+```typescript
+// Context class that uses strategies
+class NumberSorter {
+  constructor(private strategy: SortStrategy) {}
+  setStrategy(s: SortStrategy) { this.strategy = s; }
+  sort(arr: number[]) { return this.strategy.sort(arr); }
+}
+
+// Usage
+const sorter = new NumberSorter(new QuickSortStrategy());
+console.log(sorter.sort([3, 1, 4, 1, 5, 9, 2, 6]));
+```
+> **Why this is OO:** The algorithm family is encapsulated behind a common interface and swapped at runtime—exactly what higher-order functions do in the FP sample.
 
 ### FP Equivalent
 **Functional Approach:**
@@ -954,7 +1664,7 @@ const quickSort: SortStrategy = arr => {
   const pivot = arr[0];
   const left = arr.slice(1).filter(x => x <= pivot);
   const right = arr.slice(1).filter(x => x > pivot);
-  return [...quickSort(left), pivot, ...quickSort(right)];
+  return [...this.sort(left), pivot, ...this.sort(right)];
 };
 
 const mergeSort: SortStrategy = arr => {
@@ -966,18 +1676,27 @@ const mergeSort: SortStrategy = arr => {
 };
 
 const bubbleSort: SortStrategy = arr => {
-  const result = [...arr];
-  for (let i = 0; i < result.length; i++) {
-    for (let j = 0; j < result.length - i - 1; j++) {
-      if (result[j] > result[j + 1]) {
-        [result[j], result[j + 1]] = [result[j + 1], result[j]];
+  const res = [...arr];
+  for (let i = 0; i < res.length; i++) {
+    for (let j = 0; j < res.length - i - 1; j++) {
+      if (res[j] > res[j + 1]) {
+        [res[j], res[j + 1]] = [res[j + 1], res[j]];
       }
     }
   }
-  return result;
+  return res;
 };
 
-// Context function
+// Helper for merge sort
+function merge(left: number[], right: number[]): number[] {
+  const result: number[] = [];
+  while (left.length && right.length) {
+    result.push(left[0] <= right[0] ? left.shift()! : right.shift()!);
+  }
+  return [...result, ...left, ...right];
+}
+
+// Context
 const sortArray = (arr: number[], strategy: SortStrategy) => strategy(arr);
 
 // Usage
