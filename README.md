@@ -43,6 +43,95 @@ design-pattern/
 │   ├── use-case.md                       # Real-world applications
 │   ├── index.ts                          # Available use cases overview
 │   └── [Multiple prototype implementations] # Object cloning patterns
+├── 6 - Structural - Adapter/
+│   ├── introduction.md                    # Pattern theory and concepts
+│   ├── use-case.md                       # Real-world applications
+│   ├── index.ts                          # Available use cases overview
+│   ├── use-case-payment-gateway-adapter.ts     # Payment gateway integration
+│   ├── use-case-database-driver-adapter.ts     # Database driver abstraction
+│   ├── use-case-file-format-converter-adapter.ts # File format conversion
+│   ├── use-case-soap-user-service-adapter.ts   # Legacy SOAP service adapter
+│   └── use-case-logger-winston-adapter.ts      # Logger framework adapter
+├── 7 - Structural - Bridge/
+│   ├── introduction.md                    # Pattern theory and concepts
+│   ├── use-case.md                       # Real-world applications
+│   ├── index.ts                          # Available use cases overview
+│   └── [Multiple bridge implementations]  # Abstraction-implementation separation
+├── 8 - Structural - Composite/
+│   ├── introduction.md                    # Pattern theory and concepts
+│   ├── use-case.md                       # Real-world applications
+│   ├── index.ts                          # Available use cases overview
+│   └── [Multiple composite implementations] # Tree structure handling
+├── 9 - Structural - Decorator/
+│   ├── introduction.md                    # Pattern theory and concepts
+│   ├── use-case.md                       # Real-world applications
+│   ├── index.ts                          # Available use cases overview
+│   └── [Multiple decorator implementations] # Dynamic behavior extension
+├── 10 - Structural - Facade/
+│   ├── introduction.md                    # Pattern theory and concepts
+│   ├── use-case.md                       # Real-world applications
+│   ├── index.ts                          # Available use cases overview
+│   └── [Multiple facade implementations]  # Simplified subsystem interface
+├── 11 - Structural - Flyweight/
+│   ├── introduction.md                    # Pattern theory and concepts
+│   ├── use-case.md                       # Real-world applications
+│   ├── index.ts                          # Available use cases overview
+│   └── [Multiple flyweight implementations] # Memory optimization
+├── 12 - Structural - Proxy/
+│   ├── introduction.md                    # Pattern theory and concepts
+│   ├── use-case.md                       # Real-world applications
+│   ├── index.ts                          # Available use cases overview
+│   └── [Multiple proxy implementations]   # Access control and caching
+├── 13 - Behavioral - Chain of Responsibility/
+│   ├── introduction.md                    # Pattern theory and concepts
+│   ├── use-case.md                       # Real-world applications
+│   ├── index.ts                          # Available use cases overview
+│   └── [Multiple chain implementations]   # Request processing pipeline
+├── 14 - Behavioral - Command/
+│   ├── introduction.md                    # Pattern theory and concepts
+│   ├── use-case.md                       # Real-world applications
+│   ├── index.ts                          # Available use cases overview
+│   └── [Multiple command implementations] # Action encapsulation
+├── 15 - Behavioral - Iterator/
+│   ├── introduction.md                    # Pattern theory and concepts
+│   ├── use-case.md                       # Real-world applications
+│   ├── index.ts                          # Available use cases overview
+│   └── [Multiple iterator implementations] # Collection traversal
+├── 16 - Behavioral - Mediator/
+│   ├── introduction.md                    # Pattern theory and concepts
+│   ├── use-case.md                       # Real-world applications
+│   ├── index.ts                          # Available use cases overview
+│   └── [Multiple mediator implementations] # Object communication
+├── 17 - Behavioral - Memento/
+│   ├── introduction.md                    # Pattern theory and concepts
+│   ├── use-case.md                       # Real-world applications
+│   ├── index.ts                          # Available use cases overview
+│   └── [Multiple memento implementations] # State restoration
+├── 18 - Behavioral - Observer/
+│   ├── introduction.md                    # Pattern theory and concepts
+│   ├── use-case.md                       # Real-world applications
+│   ├── index.ts                          # Available use cases overview
+│   └── [Multiple observer implementations] # Event notification
+├── 19 - Behavioral - State/
+│   ├── introduction.md                    # Pattern theory and concepts
+│   ├── use-case.md                       # Real-world applications
+│   ├── index.ts                          # Available use cases overview
+│   └── [Multiple state implementations]   # State-dependent behavior
+├── 20 - Behavioral - Template Method/
+│   ├── introduction.md                    # Pattern theory and concepts
+│   ├── use-case.md                       # Real-world applications
+│   ├── index.ts                          # Available use cases overview
+│   └── [Multiple template implementations] # Algorithm skeleton
+├── 21 - Behavioral - Visitor/
+│   ├── introduction.md                    # Pattern theory and concepts
+│   ├── use-case.md                       # Real-world applications
+│   ├── index.ts                          # Available use cases overview
+│   └── [Multiple visitor implementations] # Operation separation
+├── 22 - Behavioral - Strategy/
+│   ├── introduction.md                    # Pattern theory and concepts
+│   ├── use-case.md                       # Real-world applications
+│   ├── index.ts                          # Available use cases overview
+│   └── [Multiple strategy implementations] # Algorithm selection
 ├── Function Patterns/
 │   ├── introduction.md                    # Functional programming theory
 │   ├── README.md                         # Quick reference guide
@@ -58,7 +147,12 @@ design-pattern/
 │   ├── F9 - Lens Pattern/
 │   └── F10 - Reader Pattern/
 ├── Reflection/
-│   └── factory-method-vs-abstract-factory.md # Practical decision guide
+│   ├── factory-method-vs-abstract-factory.md # Practical decision guide
+│   ├── adapter-pattern-in-functional-programming.md # FP perspective on adapters
+│   ├── facade-composite-decorator-flyweight.md # Structural pattern comparison
+│   ├── observer-vs-bridge-pattern-comparison.md # Communication pattern analysis
+│   ├── template-method-vs-composite-pattern-comparison.md # Algorithm vs structure
+│   └── oo-to-fp-pattern-mapping.md # Comprehensive OO to FP mapping
 ├── package.json          # Project dependencies
 ├── tsconfig.json         # TypeScript configuration
 └── README.md            # This file
@@ -137,6 +231,185 @@ npm run prototype:game          # Game Object Prototype
 npm run prototype:ui            # UI Component Prototype
 npm run prototype:data          # Data Model Prototype
 
+# Show available Adapter use cases
+npm run adapter
+
+# Run specific Adapter examples
+npm run adapter:payment     # Payment Gateway Adapter
+npm run adapter:database    # Database Driver Adapter
+npm run adapter:file        # File Format Converter Adapter
+npm run adapter:soap        # SOAP User Service Adapter
+npm run adapter:logger      # Winston Logger Adapter
+
+# Show available Bridge use cases
+npm run bridge
+
+# Run specific Bridge examples
+npm run bridge:messaging    # Messaging Bridge
+npm run bridge:shapes       # Shape Renderer Bridge
+npm run bridge:storage      # Storage Provider Bridge
+npm run bridge:featureflag  # Feature Flag Bridge
+npm run bridge:payment      # Payment Gateway Bridge
+
+# Show available Composite use cases
+npm run composite
+
+# Run specific Composite examples
+npm run composite:filesystem # Filesystem Composite
+npm run composite:widgets    # UI Widget Composite
+npm run composite:org        # Organization Chart Composite
+npm run composite:graphics   # Graphic Group Composite
+npm run composite:menu       # Menu Composite
+
+# Show available Decorator use cases
+npm run decorator
+
+# Run specific Decorator examples
+npm run decorator:http       # HTTP Middleware Decorator
+npm run decorator:logger     # Logger Decorator
+npm run decorator:encrypt    # Encryption Stream Decorator
+npm run decorator:ui         # UI Component Decorator
+npm run decorator:repo       # Repository Validation Decorator
+
+# Show available Facade use cases
+npm run facade
+
+# Run specific Facade examples
+npm run facade:home          # Home Theater Facade
+npm run facade:payment       # Payment Processing Facade
+npm run facade:notify        # Notification Facade
+npm run facade:cloud         # Cloud Deployment Facade
+npm run facade:api           # API Client Facade
+
+# Show available Flyweight use cases
+npm run flyweight
+
+# Run specific Flyweight examples
+npm run flyweight:forest     # Forest Flyweight
+npm run flyweight:map        # Map Marker Flyweight
+npm run flyweight:particles  # Particle System Flyweight
+npm run flyweight:glyphs     # Text Glyph Flyweight
+npm run flyweight:styles     # UI Style Flyweight
+
+# Show available Proxy use cases
+npm run proxy
+
+# Run specific Proxy examples
+npm run proxy:cache          # Cache Proxy
+npm run proxy:security       # Security Proxy
+npm run proxy:remote         # Remote Proxy
+npm run proxy:lazy           # Lazy Image Proxy
+npm run proxy:rate           # Rate Limit Proxy
+
+# Show available Chain of Responsibility use cases
+npm run chain
+
+# Run specific Chain of Responsibility examples
+npm run chain:http           # HTTP Validation Chain
+npm run chain:logging        # Logging Chain
+npm run chain:purchase       # Purchase Approval Chain
+npm run chain:support        # Support Escalation Chain
+npm run chain:spam           # Email Spam Filter Chain
+
+# Show available Command use cases
+npm run command
+
+# Run specific Command examples
+npm run command:text-editor  # Text Editor Commands
+npm run command:smart-home   # Smart Home Commands
+npm run command:restaurant   # Restaurant Commands
+npm run command:game-input   # Game Input Commands
+npm run command:database     # Database Commands
+npm run command:react-form   # React Form Commands
+
+# Show available Iterator use cases
+npm run iterator
+
+# Run specific Iterator examples
+npm run iterator:database    # Database Iterator
+npm run iterator:filesystem  # Filesystem Iterator
+npm run iterator:tree        # Tree Iterator
+npm run iterator:stream      # Stream Iterator
+npm run iterator:gui         # GUI Iterator
+npm run iterator:notification # Notification Iterator
+
+# Show available Mediator use cases
+npm run mediator
+
+# Run specific Mediator examples
+npm run mediator:airtraffic  # Air Traffic Control
+npm run mediator:chat        # Chat System
+npm run mediator:smarthome   # Smart Home
+npm run mediator:ecommerce   # E-commerce
+npm run mediator:gameengine  # Game Engine
+npm run mediator:car-system  # Car System
+
+# Show available Memento use cases
+npm run memento
+
+# Run specific Memento examples
+npm run memento:text-editor  # Text Editor Memento
+npm run memento:graphics     # Graphics Memento
+npm run memento:database     # Database Memento
+npm run memento:game         # Game Memento
+npm run memento:configuration # Configuration Memento
+
+# Show available Observer use cases
+npm run observer
+
+# Run specific Observer examples
+npm run observer:stock-market # Stock Market Observer
+npm run observer:social-media # Social Media Observer
+npm run observer:logging      # Logging Observer
+npm run observer:weather      # Weather Station Observer
+npm run observer:game-engine  # Game Engine Observer
+npm run observer:slack        # Slack Notification Observer
+
+# Show available State use cases
+npm run state
+
+# Run specific State examples
+npm run state:document-workflow # Document Workflow State
+npm run state:game-character    # Game Character State
+npm run state:order-processing  # Order Processing State
+npm run state:ticket-support    # Ticket Support State
+npm run state:traffic-light     # Traffic Light State
+npm run state:vending-machine   # Vending Machine State
+
+# Show available Template Method use cases
+npm run template-method
+
+# Run specific Template Method examples
+npm run template-method:build-system    # Build System Template
+npm run template-method:data-processing # Data Processing Template
+npm run template-method:database        # Database Operations Template
+npm run template-method:game-engine     # Game Engine Template
+npm run template-method:report-generator # Report Generator Template
+npm run template-method:web-request     # Web Request Template
+
+# Show available Visitor use cases
+npm run visitor
+
+# Run specific Visitor examples
+npm run visitor:document      # Document Processing Visitor
+npm run visitor:ast           # AST Compiler Visitor
+npm run visitor:graphics      # Graphics System Visitor
+npm run visitor:filesystem    # File System Visitor
+npm run visitor:game          # Game Engine Visitor
+npm run visitor:config        # Configuration System Visitor
+
+# Show available Strategy use cases
+npm run strategy
+
+# Run specific Strategy examples
+npm run strategy:payment      # Payment Processing Strategy
+npm run strategy:validation   # Data Validation Strategy
+npm run strategy:sorting      # Sorting Algorithms Strategy
+npm run strategy:compression  # Compression System Strategy
+npm run strategy:pricing      # Pricing Strategy
+npm run strategy:authentication # Authentication Strategy
+npm run strategy:notification # Notification Strategy
+
 # Show available Functional Patterns overview
 npm run functional
 
@@ -184,7 +457,28 @@ node "dist/1 - Creational - Singleton/use-case-configuration-manager.js"
 - **4 - Creational - Builder** - Constructs complex objects step by step
 - **5 - Creational - Prototype** - Creates objects by cloning existing instances
 
-#### 2. Functional Programming Patterns (F1-F10)
+#### 2. Structural Patterns (Complete)
+- **6 - Structural - Adapter** - Allows incompatible interfaces to work together
+- **7 - Structural - Bridge** - Separates abstraction from implementation
+- **8 - Structural - Composite** - Composes objects into tree structures
+- **9 - Structural - Decorator** - Adds behavior to objects dynamically
+- **10 - Structural - Facade** - Provides simplified interface to complex subsystem
+- **11 - Structural - Flyweight** - Reduces memory usage by sharing common parts
+- **12 - Structural - Proxy** - Provides surrogate or placeholder for another object
+
+#### 3. Behavioral Patterns (Complete)
+- **13 - Behavioral - Chain of Responsibility** - Passes requests along handler chain
+- **14 - Behavioral - Command** - Encapsulates request as object
+- **15 - Behavioral - Iterator** - Accesses elements of collection without exposing structure
+- **16 - Behavioral - Mediator** - Reduces coupling between components
+- **17 - Behavioral - Memento** - Captures and restores object state
+- **18 - Behavioral - Observer** - Defines one-to-many dependency between objects
+- **19 - Behavioral - State** - Allows object to alter behavior when state changes
+- **20 - Behavioral - Template Method** - Defines algorithm skeleton in superclass
+- **21 - Behavioral - Visitor** - Separates algorithm from object structure
+- **22 - Behavioral - Strategy** - Defines family of algorithms and makes them interchangeable
+
+#### 4. Functional Programming Patterns (F1-F10)
 
 **🏗️ Foundation Patterns**
 - **F1 - Maybe-Option Pattern** - Type-safe null handling with functional composition
@@ -205,12 +499,6 @@ node "dist/1 - Creational - Singleton/use-case-configuration-manager.js"
 #### 🤔 Practical Guidance
 - **Reflection/** - Decision guides, tips, and lessons learned from real implementations
 
-#### 🔄 Coming Soon
-- **6 - Structural - Adapter**
-- **7 - Structural - Decorator** 
-- **8 - Behavioral - Observer**
-- **9 - Behavioral - Strategy**
-
 ## 🔍 Pattern Structure
 
 Each pattern folder contains:
@@ -218,21 +506,18 @@ Each pattern folder contains:
 1. **`introduction.md`** - Pattern definition, structure, benefits, and drawbacks
 2. **`use-case.md`** - Real-world scenarios and practical applications
 3. **Individual use case files** - Focused implementations:
-   - `use-case-configuration-manager.ts` - App settings management
-   - `use-case-application-logger.ts` - Centralized logging service
-   - `use-case-cache-manager.ts` - In-memory caching with TTL
-   - `use-case-database-manager.ts` - Database connection simulation
-   - `use-case-event-bus.ts` - Pub/Sub communication system
    - Each includes usage demonstrations and unit testing
+   - Production-ready code with proper error handling
+   - Comprehensive examples with real-world complexity
 
 ## 💡 Learning Approach
 
 ### Recommended Learning Path:
 1. **Read `introduction.md`** - Understand the pattern theory
 2. **Review `use-case.md`** - See real-world applications  
-3. **Run `npm run singleton`** - See available use cases
+3. **Run `npm run [pattern]`** - See available use cases
 4. **Study individual use case files** - Focus on specific implementations
-5. **Run examples** - `npm run singleton:config`, `npm run singleton:logger`, etc.
+5. **Run examples** - `npm run [pattern]:[example]`
 6. **Experiment** - Modify and extend the code
 
 ### Key Features:
@@ -249,6 +534,11 @@ The **Reflection/** folder contains practical insights and decision frameworks g
 
 ### 📚 Available Reflections:
 - **[Factory Method vs Abstract Factory](./Reflection/factory-method-vs-abstract-factory.md)** - Comprehensive decision guide with practical examples, migration strategies, anti-patterns to avoid, and performance considerations
+- **[Adapter Pattern in Functional Programming](./Reflection/adapter-pattern-in-functional-programming.md)** - FP perspective on adapter patterns with practical examples
+- **[Facade, Composite, Decorator, Flyweight Comparison](./Reflection/facade-composite-decorator-flyweight.md)** - Structural pattern comparison and decision framework
+- **[Observer vs Bridge Pattern Comparison](./Reflection/observer-vs-bridge-pattern-comparison.md)** - Communication pattern analysis and use case guidance
+- **[Template Method vs Composite Pattern Comparison](./Reflection/template-method-vs-composite-pattern-comparison.md)** - Algorithm vs structure pattern comparison
+- **[OO to FP Pattern Mapping](./Reflection/oo-to-fp-pattern-mapping.md)** - Comprehensive mapping of OO patterns to functional equivalents
 
 ## 🚀 Example: Running Singleton Pattern
 
@@ -301,6 +591,8 @@ npm run test                # Run Jest tests
 npm run lint                # Run ESLint
 npm run format              # Format code with Prettier
 npm run clean               # Clean build directory
+
+# Creational Patterns
 npm run singleton                # Show Singleton pattern use cases
 npm run singleton:config         # Run Configuration Manager example
 npm run singleton:logger         # Run Application Logger example
@@ -331,6 +623,123 @@ npm run prototype:configuration  # Run Configuration Prototype example
 npm run prototype:game           # Run Game Object Prototype example
 npm run prototype:ui             # Run UI Component Prototype example
 npm run prototype:data           # Run Data Model Prototype example
+
+# Structural Patterns
+npm run adapter                  # Show Adapter pattern use cases
+npm run adapter:payment          # Run Payment Gateway Adapter example
+npm run adapter:database         # Run Database Driver Adapter example
+npm run adapter:file             # Run File Format Converter Adapter example
+npm run adapter:soap             # Run SOAP User Service Adapter example
+npm run adapter:logger           # Run Winston Logger Adapter example
+npm run bridge                   # Show Bridge pattern use cases
+npm run bridge:messaging         # Run Messaging Bridge example
+npm run bridge:shapes            # Run Shape Renderer Bridge example
+npm run bridge:storage           # Run Storage Provider Bridge example
+npm run bridge:featureflag       # Run Feature Flag Bridge example
+npm run bridge:payment           # Run Payment Gateway Bridge example
+npm run composite                # Show Composite pattern use cases
+npm run composite:filesystem     # Run Filesystem Composite example
+npm run composite:widgets        # Run UI Widget Composite example
+npm run composite:org            # Run Organization Chart Composite example
+npm run composite:graphics       # Run Graphic Group Composite example
+npm run composite:menu           # Run Menu Composite example
+npm run decorator                # Show Decorator pattern use cases
+npm run decorator:http           # Run HTTP Middleware Decorator example
+npm run decorator:logger         # Run Logger Decorator example
+npm run decorator:encrypt        # Run Encryption Stream Decorator example
+npm run decorator:ui             # Run UI Component Decorator example
+npm run decorator:repo           # Run Repository Validation Decorator example
+npm run facade                   # Show Facade pattern use cases
+npm run facade:home              # Run Home Theater Facade example
+npm run facade:payment           # Run Payment Processing Facade example
+npm run facade:notify            # Run Notification Facade example
+npm run facade:cloud             # Run Cloud Deployment Facade example
+npm run facade:api               # Run API Client Facade example
+npm run flyweight                # Show Flyweight pattern use cases
+npm run flyweight:forest         # Run Forest Flyweight example
+npm run flyweight:map            # Run Map Marker Flyweight example
+npm run flyweight:particles      # Run Particle System Flyweight example
+npm run flyweight:glyphs         # Run Text Glyph Flyweight example
+npm run flyweight:styles         # Run UI Style Flyweight example
+npm run proxy                    # Show Proxy pattern use cases
+npm run proxy:cache              # Run Cache Proxy example
+npm run proxy:security           # Run Security Proxy example
+npm run proxy:remote             # Run Remote Proxy example
+npm run proxy:lazy               # Run Lazy Image Proxy example
+npm run proxy:rate               # Run Rate Limit Proxy example
+
+# Behavioral Patterns
+npm run chain                    # Show Chain of Responsibility pattern use cases
+npm run chain:http               # Run HTTP Validation Chain example
+npm run chain:logging            # Run Logging Chain example
+npm run chain:purchase           # Run Purchase Approval Chain example
+npm run chain:support            # Run Support Escalation Chain example
+npm run chain:spam               # Run Email Spam Filter Chain example
+npm run command                  # Show Command pattern use cases
+npm run command:text-editor      # Run Text Editor Commands example
+npm run command:smart-home       # Run Smart Home Commands example
+npm run command:restaurant       # Run Restaurant Commands example
+npm run command:game-input       # Run Game Input Commands example
+npm run command:database         # Run Database Commands example
+npm run command:react-form       # Run React Form Commands example
+npm run iterator                 # Show Iterator pattern use cases
+npm run iterator:database        # Run Database Iterator example
+npm run iterator:filesystem      # Run Filesystem Iterator example
+npm run iterator:tree            # Run Tree Iterator example
+npm run iterator:stream          # Run Stream Iterator example
+npm run iterator:gui             # Run GUI Iterator example
+npm run iterator:notification    # Run Notification Iterator example
+npm run mediator                 # Show Mediator pattern use cases
+npm run mediator:airtraffic      # Run Air Traffic Control example
+npm run mediator:chat            # Run Chat System example
+npm run mediator:smarthome       # Run Smart Home example
+npm run mediator:ecommerce       # Run E-commerce example
+npm run mediator:gameengine      # Run Game Engine example
+npm run mediator:car-system      # Run Car System example
+npm run memento                  # Show Memento pattern use cases
+npm run memento:text-editor      # Run Text Editor Memento example
+npm run memento:graphics         # Run Graphics Memento example
+npm run memento:database         # Run Database Memento example
+npm run memento:game             # Run Game Memento example
+npm run memento:configuration    # Run Configuration Memento example
+npm run observer                 # Show Observer pattern use cases
+npm run observer:stock-market    # Run Stock Market Observer example
+npm run observer:social-media    # Run Social Media Observer example
+npm run observer:logging         # Run Logging Observer example
+npm run observer:weather         # Run Weather Station Observer example
+npm run observer:game-engine     # Run Game Engine Observer example
+npm run observer:slack           # Run Slack Notification Observer example
+npm run state                    # Show State pattern use cases
+npm run state:document-workflow  # Run Document Workflow State example
+npm run state:game-character     # Run Game Character State example
+npm run state:order-processing   # Run Order Processing State example
+npm run state:ticket-support     # Run Ticket Support State example
+npm run state:traffic-light      # Run Traffic Light State example
+npm run state:vending-machine    # Run Vending Machine State example
+npm run template-method          # Show Template Method pattern use cases
+npm run template-method:build-system    # Run Build System Template example
+npm run template-method:data-processing # Run Data Processing Template example
+npm run template-method:database        # Run Database Operations Template example
+npm run template-method:game-engine     # Run Game Engine Template example
+npm run template-method:report-generator # Run Report Generator Template example
+npm run template-method:web-request     # Run Web Request Template example
+npm run visitor                  # Show Visitor pattern use cases
+npm run visitor:document         # Run Document Processing Visitor example
+npm run visitor:ast              # Run AST Compiler Visitor example
+npm run visitor:graphics         # Run Graphics System Visitor example
+npm run visitor:filesystem       # Run File System Visitor example
+npm run visitor:game             # Run Game Engine Visitor example
+npm run visitor:config           # Run Configuration System Visitor example
+npm run strategy                 # Show Strategy pattern use cases
+npm run strategy:payment         # Run Payment Processing Strategy example
+npm run strategy:validation      # Run Data Validation Strategy example
+npm run strategy:sorting         # Run Sorting Algorithms Strategy example
+npm run strategy:compression     # Run Compression System Strategy example
+npm run strategy:pricing         # Run Pricing Strategy example
+npm run strategy:authentication  # Run Authentication Strategy example
+npm run strategy:notification    # Run Notification Strategy example
+
+# Functional Patterns
 npm run functional               # Show Functional Patterns overview
 npm run f1:maybe                 # F1 - Maybe-Option Pattern
 npm run f2:strategy              # F2 - Strategy Pattern (Higher-Order Functions)
