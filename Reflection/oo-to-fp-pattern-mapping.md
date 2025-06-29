@@ -1155,66 +1155,143 @@ Use generators and functional array methods.
 ### OO Approach
 **Intent:** Define an object that encapsulates how a set of objects interact.
 
+- Mediator interface
+- Concrete mediator coordinating car parts
+- Colleague components (Ignition, GearLever, Accelerator, Brake)
+
 ### OO Example
 ```typescript
-// Colleague classes
-class User {
-  constructor(private name: string, private chat: ChatRoom) {
-    chat.addUser(this);
-  }
-  send(message: string) {
-    console.log(`${this.name} sends: ${message}`);
-    this.chat.send(message, this);
-  }
-  receive(message: string) {
-    console.log(`${this.name} receives: ${message}`);
+// Mediator interface
+interface CarMediator {
+  notify(sender: CarComponent, event: string, data?: any): void;
+}
+
+// Common interface for car parts
+interface CarComponent {
+  setMediator(mediator: CarMediator): void;
+  send(event: string, data?: any): void;
+}
+
+// Concrete mediator centralising all rules
+class SimpleCarMediator implements CarMediator {
+  private running = false;
+  private gear: 'P' | 'D' = 'P';
+
+  notify(sender: CarComponent, event: string, data?: any): void {
+    switch (event) {
+      case 'turnOn':
+        if (this.gear !== 'P') {
+          console.log('❌ Cannot start unless gear is P');
+        } else {
+          this.running = true;
+          console.log('✅ Car started');
+        }
+        break;
+      case 'shift':
+        this.gear = data;
+        console.log(`🔄 Gear shifted to ${this.gear}`);
+        break;
+      case 'accelerate':
+        if (!this.running) {
+          console.log('❌ Car is off');
+        } else if (this.gear !== 'D') {
+          console.log('❌ Gear not in Drive');
+        } else {
+          console.log(`🚀 Accelerating by ${data} km/h`);
+        }
+        break;
+    }
   }
 }
 
-// Usage
-const room = new ChatRoom();
-const alice = new User('Alice', room);
-const bob = new User('Bob', room);
-alice.send('Hello Bob');
+// Concrete components that talk *only* to the mediator
+class Ignition implements CarComponent {
+  private mediator!: CarMediator;
+  setMediator(m: CarMediator) { this.mediator = m; }
+  send(e: string, d?: any) { this.mediator.notify(this, e, d); }
+  turnKey() { this.send('turnOn'); }
+}
+
+class GearLever implements CarComponent {
+  private mediator!: CarMediator;
+  setMediator(m: CarMediator) { this.mediator = m; }
+  send(e: string, d?: any) { this.mediator.notify(this, e, d); }
+  shift(gear: 'P' | 'D') { this.send('shift', gear); }
+}
+
+class Accelerator implements CarComponent {
+  private mediator!: CarMediator;
+  setMediator(m: CarMediator) { this.mediator = m; }
+  send(e: string, d?: any) { this.mediator.notify(this, e, d); }
+  press(amount: number) { this.send('accelerate', amount); }
+}
+
+// ===== Demo =====
+const mediator = new SimpleCarMediator();
+const ignition = new Ignition();
+const gear = new GearLever();
+const accelerator = new Accelerator();
+
+ignition.setMediator(mediator);
+gear.setMediator(mediator);
+accelerator.setMediator(mediator);
+
+gear.shift('P');          // make sure we are in Park
+ignition.turnKey();       // start car
+gear.shift('D');          // Drive
+accelerator.press(20);    // accelerate
 ```
-> **Why this is OO:** The mediator (`ChatRoom`) centralises interaction logic, decoupling user objects just as the FP event-bus does functionally.
+> **Why this is OO:** Each car part knows only the mediator, not each other. All coordination rules live in `SimpleCarMediator`, so colleagues stay decoupled.
 
 ### FP Equivalent
 **Functional Approach:**
-- Use event bus as function or pub-sub with closures.
-- Use function composition for coordination.
+- Use a *pure* mediator function that keeps state in a closure.
+- Components become simple helper functions forwarding events.
 
 **Example:**
 ```typescript
-// OO: Mediator -> Colleagues
-// FP:
-type EventHandler = (data: any) => void;
-type EventBus = Map<string, EventHandler[]>;
+// FP mediator returns a dispatcher function
+const createCarMediator = () => {
+  type Gear = 'P' | 'D';
+  let running = false;
+  let gear: Gear = 'P';
 
-const createEventBus = () => {
-  const handlers: EventBus = new Map();
-  
-  return {
-    subscribe: (event: string, handler: EventHandler) => {
-      if (!handlers.has(event)) {
-        handlers.set(event, []);
-      }
-      handlers.get(event)!.push(handler);
-    },
-    publish: (event: string, data: any) => {
-      const eventHandlers = handlers.get(event) || [];
-      eventHandlers.forEach(handler => handler(data));
+  return (event: string, data?: any) => {
+    switch (event) {
+      case 'turnOn':
+        if (gear !== 'P') {
+          console.log('❌ Cannot start unless gear is P');
+        } else {
+          running = true;
+          console.log('✅ Car started');
+        }
+        break;
+      case 'shift':
+        gear = data;
+        console.log(`🔄 Gear shifted to ${gear}`);
+        break;
+      case 'accelerate':
+        if (!running) {
+          console.log('❌ Car is off');
+        } else if (gear !== 'D') {
+          console.log('❌ Gear not in Drive');
+        } else {
+          console.log(`🚀 Accelerating by ${data} km/h`);
+        }
+        break;
     }
   };
 };
 
-// Usage
-const bus = createEventBus();
-bus.subscribe('userCreated', (user) => console.log('User created:', user));
-bus.publish('userCreated', { name: 'John' });
+// ===== Demo (same scenario) =====
+const car = createCarMediator();
+car('shift', 'P');   // Park
+car('turnOn');       // start
+car('shift', 'D');   // Drive
+car('accelerate', 20);
 ```
 **FP Best Practice:**
-Use event buses and function composition for coordination.
+Keep mutable state hidden inside a closure; expose a pure event dispatcher so the rest of the program stays side-effect free.
 
 ---
 
